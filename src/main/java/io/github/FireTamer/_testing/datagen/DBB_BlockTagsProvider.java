@@ -1,10 +1,9 @@
-package io.github.FireTamer.datagen;
+package io.github.FireTamer._testing.datagen;
 
 import io.github.FireTamer.DBB_Main;
 import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

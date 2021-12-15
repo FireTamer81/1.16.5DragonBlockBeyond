@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "age=0": { "model": "dragonblockbeyond:block/ajisa_bush_small" },
+    "age=1": { "model": "dragonblockbeyond:block/ajisa_bush_medium" },
+    "age=2": { "model": "dragonblockbeyond:block/ajisa_bush_large" },
+    "age=3": { "model": "dragonblockbeyond:block/ajisa_bush_blooming" }
+  }
+}

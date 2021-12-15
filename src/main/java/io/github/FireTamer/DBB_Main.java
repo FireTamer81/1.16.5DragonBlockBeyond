@@ -4,20 +4,16 @@ import com.matyrobbrt.lib.ClientSetup;
 import com.matyrobbrt.lib.ModSetup;
 import com.matyrobbrt.lib.registry.annotation.AnnotationProcessor;
 import io.github.FireTamer.api.DBB_AnnotationProcessor;
-import io.github.FireTamer.datagen.DBB_BlockStatesProvider;
-import io.github.FireTamer.datagen.DBB_BlockTagsProvider;
-import io.github.FireTamer.datagen.DBB_ItemModelsProvider;
+import io.github.FireTamer.common.OreGeneration;
 import io.github.FireTamer.itemGroups.DBB_Blocks_ItemGroup;
 import io.github.FireTamer.itemGroups.DBB_ItemGroup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,6 +43,10 @@ public class DBB_Main extends ModSetup
         //modBus.addListener(this::gatherData);
         forgeBus.addListener(EventPriority.HIGH, this::onServerStart);
         //forgeBus.addListener(EventPriority.HIGH, this::onRegisterCommands);
+        forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+
+
+
 
         /**
         if (!CONFIF_DIR.exists()) {
@@ -83,6 +83,7 @@ public class DBB_Main extends ModSetup
     }
 
     private void setup(final FMLCommonSetupEvent event) {}
+
 
     /**
     public void onRegisterCommands(final RegisterCommandsEvent event) {

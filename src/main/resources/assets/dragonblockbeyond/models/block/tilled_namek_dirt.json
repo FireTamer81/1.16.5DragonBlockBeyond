@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "dragonblockbeyond:block/clay_dirt",
+    "top": "dragonblockbeyond:block/tilled_namek_dirt"
+  }
+}

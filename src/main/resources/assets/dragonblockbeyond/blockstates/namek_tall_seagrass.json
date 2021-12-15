@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "dragonblockbeyond:block/namek_tall_seagrass_bottom" },
+        "half=upper": { "model": "dragonblockbeyond:block/namek_tall_seagrass_top" }
+    }
+}

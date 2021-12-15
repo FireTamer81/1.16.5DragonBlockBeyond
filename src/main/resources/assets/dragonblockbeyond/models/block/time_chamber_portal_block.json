@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"particle": "dragonblockbeyond:block/portal_block",
+		"down": "dragonblockbeyond:block/portal_block",
+		"up": "dragonblockbeyond:block/portal_block",
+		"east": "dragonblockbeyond:block/portal_block",
+		"west": "dragonblockbeyond:block/portal_block",
+		"north": "dragonblockbeyond:block/portal_block_face",
+		"south": "dragonblockbeyond:block/portal_block"
+	}
+}

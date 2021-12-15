@@ -1,0 +1,23 @@
+{
+  "surface_builder": "dragonblockbeyond:time_chamber_surface_builder",
+  "depth": 0,
+  "scale": 0,
+  "temperature": 0,
+  "downfall": 0,
+  "precipitation": "none",
+  "temperature_modifier": "none",
+  "category": "none",
+  "player_spawn_friendly": true,
+  "effects": {
+    "sky_color": 16777215,
+    "fog_color": 15790320,
+    "water_color": 0,
+    "water_fog_color": 0,
+    "grass_color_modifier": "none"
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": []
+}

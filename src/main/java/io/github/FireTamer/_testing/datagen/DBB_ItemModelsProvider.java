@@ -1,4 +1,4 @@
-package io.github.FireTamer.datagen;
+package io.github.FireTamer._testing.datagen;
 
 import io.github.FireTamer.DBB_Main;
 import net.minecraft.data.DataGenerator;
