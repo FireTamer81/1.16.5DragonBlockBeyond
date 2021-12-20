@@ -1,0 +1,13 @@
+This module will be for machines of various purposes.
+
+Might have a "3D printer" for making things like armour, clothings, etc.
+
+Might have a capsule manufacturer for capsule items, perhaps some of them having pre-maid kits within them and all that,
+
+A healing liquid refinery from those few Namek items.
+
+A warenai block refinery and cutter for making the various blocks without the creation skill
+
+A paint mixer for paintable blocks (Mostly for warenai blocks since they have practically infinite color choices.)
+
+

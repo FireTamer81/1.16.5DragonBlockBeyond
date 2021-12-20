@@ -1,4 +1,4 @@
-package io.github.FireTamer.common;
+package io.github.FireTamer.worldgen;
 
 import io.github.FireTamer.init.BlockInit;
 import net.minecraft.block.BlockState;

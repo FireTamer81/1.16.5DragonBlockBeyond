@@ -4,7 +4,7 @@ import com.matyrobbrt.lib.ClientSetup;
 import com.matyrobbrt.lib.ModSetup;
 import com.matyrobbrt.lib.registry.annotation.AnnotationProcessor;
 import io.github.FireTamer.api.DBB_AnnotationProcessor;
-import io.github.FireTamer.common.OreGeneration;
+import io.github.FireTamer.worldgen.OreGeneration;
 import io.github.FireTamer.itemGroups.DBB_Blocks_ItemGroup;
 import io.github.FireTamer.itemGroups.DBB_ItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -12,7 +12,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +30,7 @@ public class DBB_Main extends ModSetup
     public static final ItemGroup BLOCKS_GROUP = new DBB_Blocks_ItemGroup("dbb_blocks_itemgroup");
     public static final DBB_AnnotationProcessor ANNOTATION_PROCESSOR = new DBB_AnnotationProcessor(MOD_ID);
     //public static final File CONFIF_DIR = new File(CONFIG_DIR_PATH);
+
 
 
 

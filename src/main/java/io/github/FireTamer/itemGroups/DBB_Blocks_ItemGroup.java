@@ -2,6 +2,7 @@ package io.github.FireTamer.itemGroups;
 
 import io.github.FireTamer.init.BlockInit;
 import io.github.FireTamer.modules.namekFeature.NamekModule;
+import io.github.FireTamer.modules.strongBlockFeature.StrongBlockModule;
 import io.github.FireTamer.modules.timeChamberFeature.TimeChamberModule;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -37,5 +38,7 @@ public class DBB_Blocks_ItemGroup extends ItemGroup {
         items.add(NamekModule.TALL_NAMEK_GRASS.asItem().getDefaultInstance());
         items.add(NamekModule.AJISA_BUSH.asItem().getDefaultInstance());
         items.add(NamekModule.TILLED_NAMEK_DIRT.asItem().getDefaultInstance());
+
+        items.add(StrongBlockModule.WARENAI_STRONG_BLOCK.asItem().getDefaultInstance());
     }
 }

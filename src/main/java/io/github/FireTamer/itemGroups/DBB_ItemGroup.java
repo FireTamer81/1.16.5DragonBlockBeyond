@@ -3,6 +3,7 @@ package io.github.FireTamer.itemGroups;
 import io.github.FireTamer.init.BlockInit;
 import io.github.FireTamer.init.ItemInit;
 import io.github.FireTamer.modules.namekFeature.NamekModule;
+import io.github.FireTamer.modules.strongBlockFeature.StrongBlockModule;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -24,5 +25,10 @@ public class DBB_ItemGroup extends ItemGroup {
         items.add(NamekModule.AJISA_FLOWERS.getDefaultInstance());
         items.add(NamekModule.NAMEK_KELP_BUDS.getDefaultInstance());
         items.add(NamekModule.NAMEK_WATER_BUCKET.getDefaultInstance());
+
+        items.add(StrongBlockModule.REPAIR_ITEM.getDefaultInstance());
+        items.add(StrongBlockModule.DAMAGE_ITEM.getDefaultInstance());
+        items.add(StrongBlockModule.POLISHER_ITEM.getDefaultInstance());
+        items.add(StrongBlockModule.WEDGE_ITEM.getDefaultInstance());
     }
 }
