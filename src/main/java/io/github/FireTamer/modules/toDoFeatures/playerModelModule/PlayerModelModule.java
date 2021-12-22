@@ -1,4 +1,4 @@
-package io.github.FireTamer.modules.playerModelModule;
+package io.github.FireTamer.modules.toDoFeatures.playerModelModule;
 
 import com.matyrobbrt.lib.annotation.RL;
 import com.matyrobbrt.lib.module.IModule;

@@ -1,7 +1,0 @@
-This is for everything player model.
-
-Currently I have very little idea how this will be done code wise, but there are plenty of ideas for actual models/races/and race based features.
-
-
-
-
