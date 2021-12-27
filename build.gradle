@@ -116,26 +116,37 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 repositories {
+    maven { url "https://dvs1.progwml6.com/files/maven/" }
+    maven { url "https://modmaven.k-4u.nl" }
+
+    maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    maven { url "https://dl.cloudsmith.io/public/matyrobbrt/matylib/maven/" }
+
     maven {
-        url "https://dvs1.progwml6.com/files/maven/"
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
     }
+
     maven {
-        url "https://modmaven.k-4u.nl"
+        url "https://maven.architectury.dev/"
     }
+
     maven {
-        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        url "https://maven.saps.dev/minecraft"
+        content {
+            //includeGroup "dev.latvian.mods"
+            includeGroup "dev.ftb.mods"
+        }
     }
-    maven {
-        url "https://dl.cloudsmith.io/public/matyrobbrt/matylib/maven/"
-    }
+
     maven {
         name 'tterrag maven'
         url "http://maven.tterrag.com/"
         allowInsecureProtocol = true
     }
-    maven {
-        url = "https://maven.theillusivec4.top/"
-    }
+    maven { url = "https://maven.theillusivec4.top/" }
     maven {
         name 'reflections'
         url 'https://mvnrepository.com/artifact/org.reflections/reflections'
@@ -157,6 +168,10 @@ dependencies {
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.45')
     implementation fg.deobf("com.matyrobbrt:matylib-1.16.5:1.0.5")
 
+    implementation "me.shedaniel:architectury-forge:${rootProject.architectury_version}"
+    //implementation fg.deobf("curse.maven:architectury-forge-419699:3385660")
+    //implementation fg.deobf("curse.maven:jei-419699:3564654")
+    implementation "dev.ftb.mods:ftb-library-forge:${rootProject.ftb_library_version}"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -190,5 +205,17 @@ publishing {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
+
+        /**
+        if (ENV.FTB_MAVEN_TOKEN) {
+            maven {
+                url "https://maven.ftb.dev/release"
+                credentials {
+                    username = "ftb"
+                    password = "${ENV.FTB_MAVEN_TOKEN}"
+                }
+            }
+        }**/
     }
+
 }

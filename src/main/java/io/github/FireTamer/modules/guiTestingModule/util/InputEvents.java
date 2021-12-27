@@ -2,7 +2,7 @@ package io.github.FireTamer.modules.guiTestingModule.util;
 
 import io.github.FireTamer.DBB_Main;
 import io.github.FireTamer.modules.guiTestingModule.guiTestingModule;
-import io.github.FireTamer.modules.guiTestingModule.objects.MainModScreen;
+import io.github.FireTamer.modules.guiTestingModule.objects.PlayerStatsScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
@@ -38,7 +38,7 @@ public class InputEvents {
             //PlayerEntity player = Minecraft.getInstance().player;
             //player.displayClientMessage(new StringTextComponent("Hey, the keybind works"), true);
 
-            mc.setScreen(new MainModScreen());
+            mc.setScreen(new PlayerStatsScreen());
         }
     }
 

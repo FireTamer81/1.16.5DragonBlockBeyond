@@ -16,21 +16,18 @@ import javax.swing.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-public class MainModScreen extends Screen {
-    //private static final int TEXTURE_WIDTH = 714;
-    //private static final int TEXTURE_HEIGHT = 600;
-
-    private static final int TEXTURE_WIDTH = 1024;
-    private static final int TEXTURE_HEIGHT = 1024;
+public class PlayerStatsScreen extends Screen {
+    private static final int MAX_TEXTURE_WIDTH = 256;
+    private static final int MAX_TEXTURE_HEIGHT = 256;
 
     private static final ResourceLocation SCREEN_SELECTOR = new ResourceLocation(DBB_Main.MOD_ID, "textures/gui/player_menu_screen_selector.png");
-    //private static final ResourceLocation SCREEN_SELECTOR = new ResourceLocation(DBB_Main.MOD_ID, "textures/gui/player_menu_screen_selector_2.png");
+    private static final ResourceLocation SCREEN_WIDGETS = new ResourceLocation(DBB_Main.MOD_ID, "textures/gui/dbb_widgets_1.png");
 
-    public MainModScreen() {
+    public PlayerStatsScreen() {
         //super(new TranslationTextComponent("menu.player_screen"));
         super(new StringTextComponent(""));
-        this.width = 714;
-        this.height = 600;
+        //this.width = 714;
+        //this.height = 600;
     }
 
     protected void init() {
@@ -77,18 +74,27 @@ public class MainModScreen extends Screen {
 
     @Override
     public void renderBackground(MatrixStack stack) {
+        /**
         super.renderBackground(stack);
         GlStateManager._color4f(1, 1, 1, 1);
         this.minecraft.getTextureManager().bind(SCREEN_SELECTOR);
-        int relX = (this.width - TEXTURE_WIDTH) / 714;
-        int relY = (this.height - TEXTURE_HEIGHT) / 600;
-        this.blit(stack, relX, relY, 0, 0, TEXTURE_WIDTH, TEXTURE_HEIGHT);
-        //super.renderBackground(stack);
+        int relX = (this.width - MAX_TEXTURE_WIDTH) / 714;
+        int relY = (this.height - MAX_TEXTURE_HEIGHT) / 600;
+        this.blit(stack, relX, relY, 0, 0, MAX_TEXTURE_WIDTH, MAX_TEXTURE_HEIGHT);
+        **/
 
-        // draw the background
-        //int xStart = (this.width - this.width) / 1024;
-        //int yStart = (this.height - this.height) / 1024;
-        //this.minecraft.getTextureManager().bind(SCREEN_SELECTOR);
-        //this.blit(stack, xStart, yStart, 0,0, this.width, this.height);
+        //the first int in the blit method is x position on screen
+        //the second is y position on screen
+        //3rd is start x position on texture
+        //4th is start y position on texture
+        //5th is texture width (or a section of that texture)       [Max size of 256]
+        //6th is texture height (or a section of that texture)      [Max size of 256]
+        super.renderBackground(stack);
+        GlStateManager._color4f(1, 1, 1, 1);
+        this.minecraft.getTextureManager().bind(SCREEN_WIDGETS);
+        //int relX = (this.width - MAX_TEXTURE_WIDTH) / 714;
+        //int relY = (this.height - MAX_TEXTURE_HEIGHT) / 600;
+        this.blit(stack, 0, 0, 0, 0, 97, 95);      //Dragonball Containing-Gear
+
     }
 }

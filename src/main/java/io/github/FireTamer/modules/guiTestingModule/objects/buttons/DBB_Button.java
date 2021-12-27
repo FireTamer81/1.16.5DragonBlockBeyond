@@ -1,6 +1,7 @@
 package io.github.FireTamer.modules.guiTestingModule.objects.buttons;
 
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class DBB_Button extends Button {
