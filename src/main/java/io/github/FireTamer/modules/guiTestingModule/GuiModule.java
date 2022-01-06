@@ -12,7 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import java.awt.event.KeyEvent;
 
 @Module(id = @RL(modid = DBB_Main.MOD_ID, path = "gui_testing_module"))
-public class guiTestingModule extends ModuleHelper implements IModule {
+public class GuiModule extends ModuleHelper implements IModule {
 
 
 
@@ -32,7 +32,7 @@ public class guiTestingModule extends ModuleHelper implements IModule {
     public static KeyBinding exampleKey;
 
     public static void registerKeyBinds(final FMLClientSetupEvent event) {
-        exampleKey = create("example_key", KeyEvent.VK_DEAD_TILDE);
+        exampleKey = create("example_key", KeyEvent.VK_Z);
 
         ClientRegistry.registerKeyBinding(exampleKey);
     }

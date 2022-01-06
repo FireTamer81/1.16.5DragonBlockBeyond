@@ -136,18 +136,6 @@ repositories {
     }
 
     maven {
-        url "https://maven.architectury.dev/"
-    }
-
-    maven {
-        url "https://maven.saps.dev/minecraft"
-        content {
-            //includeGroup "dev.latvian.mods"
-            includeGroup "dev.ftb.mods"
-        }
-    }
-
-    maven {
         name 'tterrag maven'
         url "http://maven.tterrag.com/"
         allowInsecureProtocol = true
@@ -174,10 +162,10 @@ dependencies {
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.45')
     implementation fg.deobf("com.matyrobbrt:matylib-1.16.5:1.0.5")
 
-    implementation "me.shedaniel:architectury-forge:${rootProject.architectury_version}"
+    //implementation fg.deobf("me.shedaniel:architectury-forge:${rootProject.architectury_version}")
     //implementation fg.deobf("curse.maven:architectury-forge-419699:3385660")
     //implementation fg.deobf("curse.maven:jei-419699:3564654")
-    implementation "dev.ftb.mods:ftb-library-forge:${rootProject.ftb_library_version}"
+    //implementation fg.deobf("dev.ftb.mods:ftb-library-forge:${rootProject.ftb_library_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -212,16 +200,6 @@ publishing {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
 
-        /**
-        if (ENV.FTB_MAVEN_TOKEN) {
-            maven {
-                url "https://maven.ftb.dev/release"
-                credentials {
-                    username = "ftb"
-                    password = "${ENV.FTB_MAVEN_TOKEN}"
-                }
-            }
-        }**/
     }
 
 }

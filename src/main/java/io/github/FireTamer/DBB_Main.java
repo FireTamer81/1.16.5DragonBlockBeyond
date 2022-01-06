@@ -46,8 +46,6 @@ public class DBB_Main extends ModSetup
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
 
-
-
         /**
         if (!CONFIF_DIR.exists()) {
             LOGGER.info("Created DBB config folder!");
@@ -62,8 +60,6 @@ public class DBB_Main extends ModSetup
          **/
 
         ANNOTATION_PROCESSOR.setAutoBlockItemTab(block -> BLOCKS_GROUP);
-
-
 
 
         MinecraftForge.EVENT_BUS.register(this);
