@@ -3,6 +3,7 @@ package io.github.firetamer.dbb;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import io.github.firetamer.dbb.api.extensions.ApiExtensions;
 import io.github.firetamer.dbb.client.DBBClientSetup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,8 @@ public class DragonBlockBeyond extends ModSetup {
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
         ANNOTATION_PROCESSOR.setAutoBlockItemTab(block -> BLOCKS_GROUP);
+
+        ApiExtensions.registerAnnotationExtensions();
     }
 
 
