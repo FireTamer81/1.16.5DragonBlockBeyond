@@ -1,11 +1,11 @@
-package io.github.FireTamer.modules.guiTestingModule.objects.playerScreen;
+package io.github.FireTamer.modules.guiTestingModule.playerScreen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.FireTamer.DBB_Main;
-import io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.children.MenuSelectorGui;
-import io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.children.PlayerStatGui;
+import io.github.FireTamer.modules.guiTestingModule.playerScreen.children.MenuSelectorGui;
+import io.github.FireTamer.modules.guiTestingModule.playerScreen.children.PlayerStatGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -41,7 +41,7 @@ public class PlayerScreen extends Screen {
         this.playerStatsScreen.init(minecraft, this.width, this.height);
         this.children.add(this.playerStatsScreen);
 
-        
+
     }
 
     @Override

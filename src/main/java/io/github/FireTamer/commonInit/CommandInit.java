@@ -1,4 +1,4 @@
-package io.github.FireTamer.init;
+package io.github.FireTamer.commonInit;
 
 public class CommandInit {
 

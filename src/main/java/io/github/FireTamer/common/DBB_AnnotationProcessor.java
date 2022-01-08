@@ -1,4 +1,4 @@
-package io.github.FireTamer.api;
+package io.github.FireTamer.common;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 

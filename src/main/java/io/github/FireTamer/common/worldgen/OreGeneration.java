@@ -1,6 +1,6 @@
-package io.github.FireTamer.worldgen;
+package io.github.FireTamer.common.worldgen;
 
-import io.github.FireTamer.init.BlockInit;
+import io.github.FireTamer.commonInit.BlockInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;

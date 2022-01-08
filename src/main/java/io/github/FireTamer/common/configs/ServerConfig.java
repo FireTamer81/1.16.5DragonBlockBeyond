@@ -1,4 +1,4 @@
-package io.github.FireTamer.configs;
+package io.github.FireTamer.common.configs;
 
 
 /**

@@ -1,6 +1,6 @@
 package io.github.FireTamer.modules.namekFeature.blocks;
 
-import io.github.FireTamer.init.BlockInit;
+import io.github.FireTamer.commonInit.BlockInit;
 import io.github.FireTamer.modules.namekFeature.NamekModule;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -2,7 +2,7 @@ package io.github.FireTamer._testing.datagen;
 
 import io.github.FireTamer.DBB_Main;
 
-import io.github.FireTamer.init.BlockInit;
+import io.github.FireTamer.commonInit.BlockInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IDataProvider;
 import net.minecraftforge.client.model.generators.BlockStateProvider;

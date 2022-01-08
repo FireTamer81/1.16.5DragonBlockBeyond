@@ -1,4 +1,4 @@
-package io.github.FireTamer.init;
+package io.github.FireTamer.commonInit;
 
 import com.matyrobbrt.lib.registry.annotation.RegistryHolder;
 import io.github.FireTamer.DBB_Main;

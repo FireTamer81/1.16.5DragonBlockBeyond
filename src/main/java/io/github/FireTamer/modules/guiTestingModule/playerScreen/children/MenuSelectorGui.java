@@ -1,4 +1,4 @@
-package io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.children;
+package io.github.FireTamer.modules.guiTestingModule.playerScreen.children;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;

@@ -1,7 +1,6 @@
-package io.github.FireTamer.itemGroups;
+package io.github.FireTamer.common.itemGroups;
 
-import io.github.FireTamer.init.BlockInit;
-import io.github.FireTamer.init.ItemInit;
+import io.github.FireTamer.commonInit.ItemInit;
 import io.github.FireTamer.modules.namekFeature.NamekModule;
 import io.github.FireTamer.modules.strongBlockFeature.StrongBlockModule;
 import net.minecraft.item.ItemGroup;

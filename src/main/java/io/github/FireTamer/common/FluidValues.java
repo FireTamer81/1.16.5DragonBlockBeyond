@@ -1,4 +1,4 @@
-package io.github.FireTamer.api;
+package io.github.FireTamer.common;
 
 public enum FluidValues {
 

@@ -1,17 +1,12 @@
-package io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.children;
+package io.github.FireTamer.modules.guiTestingModule.playerScreen.children;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.FireTamer.DBB_Main;
-import io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.widgets.DBB_ToggleWidget;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ToggleWidget;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 public class PlayerStatGui extends Screen {

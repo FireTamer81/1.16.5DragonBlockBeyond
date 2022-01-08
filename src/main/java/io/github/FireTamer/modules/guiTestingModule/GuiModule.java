@@ -5,16 +5,8 @@ import com.matyrobbrt.lib.module.IModule;
 import com.matyrobbrt.lib.module.Module;
 import com.matyrobbrt.lib.module.ModuleHelper;
 import io.github.FireTamer.DBB_Main;
-import io.github.FireTamer.modules.guiTestingModule.objects.playerScreen.PlayerScreen;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.awt.event.KeyEvent;

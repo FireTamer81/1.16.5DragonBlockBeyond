@@ -1,9 +1,4 @@
-package io.github.FireTamer.configs;
-
-import io.github.FireTamer.DBB_Main;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
+package io.github.FireTamer.common.configs;
 
 
 /**
