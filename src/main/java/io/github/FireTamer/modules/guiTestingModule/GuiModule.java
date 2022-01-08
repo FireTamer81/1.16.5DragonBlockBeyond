@@ -6,6 +6,8 @@ import com.matyrobbrt.lib.module.IModule;
 import com.matyrobbrt.lib.module.Module;
 import com.matyrobbrt.lib.module.ModuleHelper;
 import io.github.FireTamer.DBB_Main;
+import io.github.FireTamer.modules.guiTestingModule.playerScreen.PlayerScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

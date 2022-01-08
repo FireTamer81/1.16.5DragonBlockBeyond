@@ -32,7 +32,7 @@ public class InputEvents {
     }
 
     private static void onInput(Minecraft mc, int key, int action) {
-        if (mc.screen == null && GuiModule.exampleKey.isDown()) {
+        if (mc.screen == null && GuiModule.PLAYER_GUI_KEY.isDown()) {
             mc.setScreen(new PlayerScreen());
         }
     }
