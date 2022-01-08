@@ -129,20 +129,28 @@ public class PlayerStatGui extends Screen {
 
     @Override
     public void render(MatrixStack stack, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
+        this.renderBG(stack);
+
+        this.strengthButton.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
+
+        //ITextComponent strengthButtonText = new StringTextComponent("Hello, this is the Strength Button");
+        //int strengthButtonTopLeftPosX = (int)(topLeftX + 10);
+        //int strengthButtonTopLeftPosY = (int)(topLeftY + 20);
+        //FontRenderer fontRenderer = this.mc.font;
+        //drawCenteredString(stack, fontRenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
+        //drawString(stack, fontRenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
+        //this.mc.font.draw(stack, "Hello All", strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
+
+        super.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
+    }
+
+
+    private void renderBG(MatrixStack stack) {
         RenderSystem.pushMatrix();
         RenderSystem.translatef(0.0f, 0.0f, 100.0f);
         this.mc.getTextureManager().bind(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.blit(stack, (int)(topLeftX), (int)(topLeftY), 0, 0, 236, 187);      //Main Background
         RenderSystem.popMatrix();
-
-        this.strengthButton.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
-
-        ITextComponent strengthButtonText = new StringTextComponent("Hello, this is the Strength Button");
-        int strengthButtonTopLeftPosX = (int)(topLeftX + 10);
-        int strengthButtonTopLeftPosY = (int)(topLeftY + 20);
-        FontRenderer fontrenderer = this.mc.font;
-
-        drawCenteredString(stack, fontrenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 16777215);
     }
 }

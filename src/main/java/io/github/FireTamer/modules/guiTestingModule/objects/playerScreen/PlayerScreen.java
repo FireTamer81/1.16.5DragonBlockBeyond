@@ -40,6 +40,8 @@ public class PlayerScreen extends Screen {
 
         this.playerStatsScreen.init(minecraft, this.width, this.height);
         this.children.add(this.playerStatsScreen);
+
+        
     }
 
     @Override
@@ -63,7 +65,7 @@ public class PlayerScreen extends Screen {
     @Override
     public void render(MatrixStack stack, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
         this.renderBackground(stack);
-        drawCenteredString(stack, this.font, this.title, this.width / 2, 40, 16777215);
+        //drawCenteredString(stack, this.font, this.title, this.width / 2, 40, 16777215);
 
         this.menuSelectorGui.render(stack, p_230430_2_, p_230430_3_, p_230430_4_); //Adds the Menu Selector GUI
         this.playerStatsScreen.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
