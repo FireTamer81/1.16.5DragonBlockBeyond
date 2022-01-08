@@ -3,6 +3,7 @@ package io.github.firetamer.dbb;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import io.github.firetamer.dbb.client.DBBClientSetup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,7 +49,7 @@ public class DragonBlockBeyond extends ModSetup {
 
     @Override
     public Optional<Supplier<ClientSetup>> clientSetup() {
-        return Optional.empty();
+        return Optional.of(() -> new DBBClientSetup(modBus));
     }
 
 }

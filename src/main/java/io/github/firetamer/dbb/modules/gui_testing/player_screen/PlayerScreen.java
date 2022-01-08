@@ -22,7 +22,7 @@ public class PlayerScreen extends Screen {
     public static final ResourceLocation GEAR_LOCATION = new ResourceLocation(DragonBlockBeyond.MOD_ID, "textures/gui/dragonball_gear.png");
 
     private final MenuSelectorGui menuSelectorGui = new MenuSelectorGui();
-    public static final PlayerStatGui playerStatsScreen = new PlayerStatGui();
+    public static final PlayerStatGui STATS_SCREEN = new PlayerStatGui();
 
     private float xMouse; //For the movement of the Rendered Entity
     private float yMouse;
@@ -40,8 +40,8 @@ public class PlayerScreen extends Screen {
         this.children.add(this.menuSelectorGui);
         this.setInitialFocus(this.menuSelectorGui);
 
-        this.playerStatsScreen.init(minecraft, this.width, this.height);
-        this.children.add(this.playerStatsScreen);
+        STATS_SCREEN.init(minecraft, this.width, this.height);
+        this.children.add(STATS_SCREEN);
 
 
     }
@@ -57,24 +57,19 @@ public class PlayerScreen extends Screen {
     }
 
 
-
-
-
-    /******************************************************************************************************************/
-    //Rendering Stuff
-    /******************************************************************************************************************/
+    // Rendering Stuff
 
     @Override
-    public void render(MatrixStack stack, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
+    public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(stack);
         //drawCenteredString(stack, this.font, this.title, this.width / 2, 40, 16777215);
 
-        this.menuSelectorGui.render(stack, p_230430_2_, p_230430_3_, p_230430_4_); //Adds the Menu Selector GUI
-        this.playerStatsScreen.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
-        this.xMouse = (float)p_230430_2_;
-        this.yMouse = (float)p_230430_3_;
+        this.menuSelectorGui.render(stack, mouseX, mouseY, partialTicks); //Adds the Menu Selector GUI
+        STATS_SCREEN.render(stack, mouseX, mouseY, partialTicks);
+        this.xMouse = (float) mouseX;
+        this.yMouse = (float) mouseY;
 
-        super.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
+        super.render(stack, mouseX, mouseY, partialTicks);
     }
 
     @Override

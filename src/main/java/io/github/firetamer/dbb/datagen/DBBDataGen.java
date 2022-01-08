@@ -3,6 +3,7 @@ package io.github.firetamer.dbb.datagen;
 import io.github.firetamer.dbb.DragonBlockBeyond;
 import io.github.firetamer.dbb.datagen.client.DBBBlockStatesProvider;
 import io.github.firetamer.dbb.datagen.client.DBBItemModelsProvider;
+import io.github.firetamer.dbb.datagen.client.lang.EnUs;
 import io.github.firetamer.dbb.datagen.common.DBBBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -21,6 +22,8 @@ public class DBBDataGen {
         gen.addProvider(new DBBBlockStatesProvider(gen, existingFileHelper));
         gen.addProvider(new DBBItemModelsProvider(gen, existingFileHelper));
         gen.addProvider(new DBBBlockTagsProvider(gen, existingFileHelper));
+
+        gen.addProvider(new EnUs(gen));
     }
 
 }

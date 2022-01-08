@@ -3,6 +3,9 @@ package io.github.firetamer.dbb.init;
 import com.matyrobbrt.lib.registry.annotation.RegisterItem;
 import com.matyrobbrt.lib.registry.annotation.RegistryHolder;
 
+import io.github.firetamer.dbb.item.SunglassesItem;
+import io.github.firetamer.dbb.item.api.SpecialArmourMaterial;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
@@ -15,4 +18,11 @@ public class ItemInit {
 
     @RegisterItem("katchin_shard")
     public static final Item KATCHIN_SHARD = new Item(new Item.Properties());
+
+    @RegisterItem("sunglasses")
+    public static final SunglassesItem SUNGLASSES = new SunglassesItem(new SpecialArmourMaterial() {
+
+        @Override
+        public String getName() { return DragonBlockBeyond.MOD_ID + ":sunglasses"; }
+    }, EquipmentSlotType.HEAD, new Item.Properties().tab(DragonBlockBeyond.MAIN_GROUP));
 }
