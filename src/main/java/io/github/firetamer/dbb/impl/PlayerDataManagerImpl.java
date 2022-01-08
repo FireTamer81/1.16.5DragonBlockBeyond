@@ -26,11 +26,11 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 	private static final String ID = DragonBlockBeyond.MOD_ID + "_player_data";
 
 	@ApiExtension(Getter.class)
-	private static final PlayerDataManager.Getter GETTER = server -> server.getLevel(World.OVERWORLD).getDataStorage()
+	public static final PlayerDataManager.Getter GETTER = server -> server.getLevel(World.OVERWORLD).getDataStorage()
 			.computeIfAbsent(() -> new PlayerDataManagerImpl(ID), ID);
 
 	@ApiExtension(Deserializer.class)
-	private static final PlayerDataManager.Deserializer DESERIALIZER = nbt -> {
+	public static final PlayerDataManager.Deserializer DESERIALIZER = nbt -> {
 		PlayerDataManagerImpl manager = new PlayerDataManagerImpl(ID);
 		manager.deserializeNBT(nbt);
 		return manager;
@@ -53,7 +53,7 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 
 	@Override
 	public void setChanged() {
-		setDirty();
+		setDirty(true);
 	}
 
 	@Override
@@ -132,7 +132,7 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 		@Override
 		public PlayerData computeIfAbsent(UUID key, Function<? super UUID, ? extends PlayerData> mappingFunction) {
 			if (isLocked) {
-				return  get(key);
+				return get(key);
 			}
 			return super.computeIfAbsent(key, mappingFunction);
 		}
