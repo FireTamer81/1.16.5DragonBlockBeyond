@@ -10,6 +10,7 @@ import io.github.firetamer.dbb.util.nbt.NBTManager;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,13 +26,13 @@ class PlayerDataImpl implements PlayerData {
 
 	private final UUID playerUUID;
 
-	private final BaseNBTList<PlayerSkill, StringNBT> skills = new BaseNBTList<>(type -> StringNBT.valueOf(type.getRegistryName().toString()),
-			nbt -> PlayerSkill.REGISTRY.getValue(new ResourceLocation(nbt.getAsString())));
+	private final NBTManager nbtManager = new NBTManager();
 
-	private final BaseNBTList<PlayerStat<?>, CompoundNBT> stats = new BaseNBTList<>(PlayerStat::serializeNBT, PlayerStat::fromNBT);
+	private final BaseNBTList<PlayerSkill, StringNBT> skills = createAndTrack("Skills", new BaseNBTList<>(type -> StringNBT.valueOf(type.getRegistryName().toString()),
+			nbt -> PlayerSkill.REGISTRY.getValue(new ResourceLocation(nbt.getAsString()))));
 
-	private final NBTManager nbtManager = new NBTManager()
-			.track("Skills", skills).track("Stats", stats);
+	private final BaseNBTList<PlayerStat<?>, CompoundNBT> stats = createAndTrack("Stats",
+			new BaseNBTList<>(PlayerStat::serializeNBT, PlayerStat::fromNBT));
 
 	public PlayerDataImpl(final UUID playerUUID) {
 		this.playerUUID = playerUUID;
@@ -62,5 +63,10 @@ class PlayerDataImpl implements PlayerData {
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
 		nbtManager.deserializeNBT(nbt);
+	}
+
+	private <T extends INBTSerializable<?>> T createAndTrack(String keyName, T value) {
+		nbtManager.track(keyName, value);
+		return value;
 	}
 }
