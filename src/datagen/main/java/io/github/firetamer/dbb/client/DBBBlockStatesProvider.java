@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.datagen.client;
+package io.github.firetamer.dbb.client;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IDataProvider;

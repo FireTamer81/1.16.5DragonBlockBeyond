@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.datagen.common;
+package io.github.firetamer.dbb.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;

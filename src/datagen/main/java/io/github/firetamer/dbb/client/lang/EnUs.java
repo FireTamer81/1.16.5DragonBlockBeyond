@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.datagen.client.lang;
+package io.github.firetamer.dbb.client.lang;
 
 import com.matyrobbrt.lib.registry.MatyLibRegistries;
 import io.github.firetamer.dbb.DragonBlockBeyond;

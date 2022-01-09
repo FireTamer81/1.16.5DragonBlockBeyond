@@ -2,7 +2,7 @@ package io.github.firetamer.dbb.impl;
 
 import com.matyrobbrt.lib.nbt.BaseNBTList;
 import io.github.firetamer.dbb.api.extensions.ApiExtension;
-import io.github.firetamer.dbb.api.extensions.playerInterfaces.PlayerData;
+import io.github.firetamer.dbb.api.extensions.dbb.PlayerData;
 import io.github.firetamer.dbb.api.player_data.skill.PlayerSkillType;
 import io.github.firetamer.dbb.util.NBTBuilder;
 import net.minecraft.nbt.CompoundNBT;

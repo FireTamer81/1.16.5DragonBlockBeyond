@@ -31,21 +31,77 @@ mixin {
     debug.export = true
 }
 
+sourceSets {
+    main {
+        java {
+        }
+        resources {
+            include '**/**'
+            // copy everything else, but blender and bbmodel files.
+            exclude '**/*.blend'
+            exclude '**/*.bbmodel'
+            //Add the generated main module resources
+            srcDirs += 'src/datagen/generated/main'
+            //But exclude the cache of the generated data from what gets built
+            exclude '.cache'
+        }
+    }
+    test {
+        //The test module has no resources
+        resources.srcDirs = []
+        compileClasspath += main.output
+        runtimeClasspath += main.output
+    }
+    datagenmain { setupDataGenSourceSet(datagenmain, null, 'main') }
+}
+
+//This method sets up a source set in datagen/$name and adds the api, main mekanism module and an optional
+// base module to the dependencies of the data generators source set that we are setting up
+def setupDataGenSourceSet(SourceSet datagenSourceSet, SourceSet baseSourceSet, String name) {
+    datagenSourceSet.java.srcDirs = ['src/datagen/' + name + '/java']
+    datagenSourceSet.compileClasspath += project.sourceSets.main.output
+    if (baseSourceSet == null) {
+        //Base source set has resources that we put files that our annotation processor generates for consumption by our datagen
+        datagenSourceSet.resources.srcDirs = ['src/datagen/' + name + '/resources']
+    } else {
+        //Data gen sourceSets outside of the main one have no resources
+        datagenSourceSet.resources.srcDirs = []
+        //Only case it is null is when we are doing datagenmain so other cases also add access to the stuff
+        // in datagenmain so we can add helper classes
+        datagenSourceSet.compileClasspath += project.sourceSets.datagenmain.output
+        datagenSourceSet.compileClasspath += baseSourceSet.output
+    }
+}
+
+configurations {
+    //Make sure all our sub source set stuff extends the proper base methods so that
+    // they can see all the dependencies we have in dependencies including forge
+    extendConfigurations(implementation, apiImplementation, testImplementation, datagenmainImplementation)
+    extendConfigurations(compileOnly, apiCompileOnly, testCompileOnly, datagenmainCompileOnly)
+    extendConfigurations(runtimeOnly, apiRuntimeOnly, datagenmainRuntimeOnly)
+}
+
+static void extendConfigurations(Configuration base, Configuration... configurations) {
+    for (def configuration : configurations) {
+        configuration.extendsFrom(base)
+    }
+}
+
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: 'parchment', version: '2021.10.10-1.16.5'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
-            workingDirectory project.file('run')
+            workingDirectory project.file('run/client')
 
             arg "-mixin.config=dragonblockbeyond.mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'mixin.env.remapRefMap', 'true'
-      	    property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                examplemod {
+                dragonblockbeyond {
                     source sourceSets.main
                 }
             }
@@ -57,39 +113,48 @@ minecraft {
             arg "-mixin.config=dragonblockbeyond.mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'mixin.env.remapRefMap', 'true'
-      	    property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                examplemod {
+                dragonblockbeyond {
                     source sourceSets.main
                 }
             }
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file('run/client')
 
             arg "-mixin.config=dragonblockbeyond.mixins.json"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'mixin.env.remapRefMap', 'true'
-      	    property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'dragonblockbeyond', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--all', '--output', file('src/datagen/generated/main'),
+                    '--mod', 'dragonblockbeyond',
+                    '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                dragonblockbeyond.sources((SourceSet[]) [sourceSets.main, sourceSets.datagenmain])
+            }
+        }
+
+        test {
+            parent runs.client
+            workingDirectory project.file('run/test')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=dragonblockbeyond.mixins.json"
+
+            mods {
+                dragonblockbeyond {
                     source sourceSets.main
+                    source sourceSets.test
                 }
             }
         }
     }
 }
-
-// Include resources generated by data generators.
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-
 
 repositories {
     maven { url "https://dvs1.progwml6.com/files/maven/" }
@@ -149,20 +214,20 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "FireTamer",
-            "Specification-Vendor": "examplemodsareus",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"examplemodsareus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title"     : "FireTamer",
+                "Specification-Vendor"    : "examplemodsareus",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "examplemodsareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
 // Example configuration to allow publishing using the maven-publish task
 // This is the preferred method to reobfuscate your jar file
-jar.finalizedBy('reobfJar') 
+jar.finalizedBy('reobfJar')
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
 

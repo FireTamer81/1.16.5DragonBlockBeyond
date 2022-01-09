@@ -1,7 +1,7 @@
 package io.github.firetamer.dbb.events;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.api.extensions.playerInterfaces.PlayerDataManager;
+import io.github.firetamer.dbb.api.extensions.dbb.PlayerDataManager;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
