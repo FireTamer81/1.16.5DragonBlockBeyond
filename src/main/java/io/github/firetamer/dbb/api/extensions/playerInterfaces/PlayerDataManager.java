@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.api.player_data;
+package io.github.firetamer.dbb.api.extensions.playerInterfaces;
 
 import io.github.firetamer.dbb.api.extensions.ApiExtendable;
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;

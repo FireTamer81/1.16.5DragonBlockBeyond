@@ -18,8 +18,8 @@ import net.minecraft.world.storage.WorldSavedData;
 import io.github.firetamer.dbb.DragonBlockBeyond;
 import io.github.firetamer.dbb.api.extensions.ApiExtension;
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;
-import io.github.firetamer.dbb.api.player_data.PlayerData;
-import io.github.firetamer.dbb.api.player_data.PlayerDataManager;
+import io.github.firetamer.dbb.api.extensions.playerInterfaces.PlayerData;
+import io.github.firetamer.dbb.api.extensions.playerInterfaces.PlayerDataManager;
 
 class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager {
 
