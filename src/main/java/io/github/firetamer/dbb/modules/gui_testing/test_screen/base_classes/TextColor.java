@@ -1,8 +1,7 @@
 package io.github.firetamer.dbb.modules.gui_testing.test_screen.base_classes;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-
-import java.awt.*;
+import io.github.firetamer.dbb.util.Color;
 
 public class TextColor {
     public static final Color BLACK = new Color(0xFF000000);
