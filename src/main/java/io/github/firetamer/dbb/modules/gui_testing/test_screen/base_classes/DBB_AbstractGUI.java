@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing.test_screen.baseClasses;
+package io.github.firetamer.dbb.modules.gui_testing.test_screen.base_classes;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -8,13 +8,11 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import org.lwjgl.opengl.GL11;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,8 @@ public abstract class DBB_AbstractGUI {
     protected int width;
     protected int height;
     protected float zLevel;
+
+    private int blitOffset;
 
     protected DBB_AbstractGUI parent;
     protected List<DBB_AbstractGUI> children = new ArrayList<>();
@@ -130,5 +130,45 @@ public abstract class DBB_AbstractGUI {
         bufferbuilder.end();
         RenderSystem.enableAlphaTest();
         WorldVertexBufferUploader.end(bufferbuilder);
+    }
+
+    protected void fillGradient(MatrixStack pPoseStack, int pX1, int pY1, int pX2, int pY2, int pColorFrom, int pColorTo) {
+        RenderSystem.disableTexture();
+        RenderSystem.enableBlend();
+        RenderSystem.disableAlphaTest();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuilder();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        fillGradient(pPoseStack.last().pose(), bufferbuilder, pX1, pY1, pX2, pY2, this.blitOffset, pColorFrom, pColorTo);
+        tessellator.end();
+        RenderSystem.shadeModel(7424);
+        RenderSystem.disableBlend();
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableTexture();
+    }
+
+    protected static void fillGradient(Matrix4f pMatrix, BufferBuilder pBuilder, int pX1, int pY1, int pX2, int pY2, int pBlitOffset, int pColorA, int pColorB) {
+        float f = (float)(pColorA >> 24 & 255) / 255.0F;
+        float f1 = (float)(pColorA >> 16 & 255) / 255.0F;
+        float f2 = (float)(pColorA >> 8 & 255) / 255.0F;
+        float f3 = (float)(pColorA & 255) / 255.0F;
+        float f4 = (float)(pColorB >> 24 & 255) / 255.0F;
+        float f5 = (float)(pColorB >> 16 & 255) / 255.0F;
+        float f6 = (float)(pColorB >> 8 & 255) / 255.0F;
+        float f7 = (float)(pColorB & 255) / 255.0F;
+        pBuilder.vertex(pMatrix, (float)pX2, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
+        pBuilder.vertex(pMatrix, (float)pX1, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
+        pBuilder.vertex(pMatrix, (float)pX1, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
+        pBuilder.vertex(pMatrix, (float)pX2, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
+    }
+
+    public int getBlitOffset() {
+        return this.blitOffset;
+    }
+
+    public void setBlitOffset(int pValue) {
+        this.blitOffset = pValue;
     }
 }

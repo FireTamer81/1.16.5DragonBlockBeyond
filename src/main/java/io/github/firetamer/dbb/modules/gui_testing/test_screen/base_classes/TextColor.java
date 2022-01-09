@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing.test_screen.baseClasses;
+package io.github.firetamer.dbb.modules.gui_testing.test_screen.base_classes;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
