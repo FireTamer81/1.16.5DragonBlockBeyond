@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.to_do.machines;
+package io.github.firetamer.dbb.modules.machines;
 
 import com.matyrobbrt.lib.annotation.RL;
 import com.matyrobbrt.lib.module.IModule;

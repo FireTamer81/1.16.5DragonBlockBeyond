@@ -1,8 +1,13 @@
 package io.github.firetamer.dbb.modules.gui_testing.test_screen.base_classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import javafx.scene.input.MouseButton;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -11,10 +16,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
-import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class DBB_AbstractGUI {
     Minecraft mc;
@@ -74,7 +75,8 @@ public abstract class DBB_AbstractGUI {
         return isWithinXRange && isWithinYRange;
     }
 
-    public void onMove(int mouseX, int mouseY, MouseButton mouseButton) {}
+	public void onMove(int mouseX, int mouseY) {
+	}
 
     protected void bindTexture(ResourceLocation texture) {
         mc.getTextureManager().bind(texture);
@@ -112,19 +114,19 @@ public abstract class DBB_AbstractGUI {
 
         bufferbuilder
                 .vertex(x, y + height, this.zLevel)
-                .uv(((float)textureWidth * f), ((float)(textureHeight + height) * f1))
+                .uv((textureWidth * f), ((textureHeight + height) * f1))
                 .endVertex();
         bufferbuilder
                 .vertex(x + width, (y + height), this.zLevel)
-                .uv(((float)(textureWidth + width) * f), ((float)(textureHeight + height) * f1))
+                .uv(((textureWidth + width) * f), ((textureHeight + height) * f1))
                 .endVertex();
         bufferbuilder
                 .vertex(x + width, y, this.zLevel)
-                .uv(((float)(textureWidth + width) * f), ((float)textureHeight * f1))
+                .uv(((textureWidth + width) * f), (textureHeight * f1))
                 .endVertex();
         bufferbuilder
                 .vertex(x, y, this.zLevel)
-                .uv(((float)textureWidth * f), ((float)textureHeight * f1))
+                .uv((textureWidth * f), (textureHeight * f1))
                 .endVertex();
 
         bufferbuilder.end();
@@ -150,18 +152,18 @@ public abstract class DBB_AbstractGUI {
     }
 
     protected static void fillGradient(Matrix4f pMatrix, BufferBuilder pBuilder, int pX1, int pY1, int pX2, int pY2, int pBlitOffset, int pColorA, int pColorB) {
-        float f = (float)(pColorA >> 24 & 255) / 255.0F;
-        float f1 = (float)(pColorA >> 16 & 255) / 255.0F;
-        float f2 = (float)(pColorA >> 8 & 255) / 255.0F;
-        float f3 = (float)(pColorA & 255) / 255.0F;
-        float f4 = (float)(pColorB >> 24 & 255) / 255.0F;
-        float f5 = (float)(pColorB >> 16 & 255) / 255.0F;
-        float f6 = (float)(pColorB >> 8 & 255) / 255.0F;
-        float f7 = (float)(pColorB & 255) / 255.0F;
-        pBuilder.vertex(pMatrix, (float)pX2, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
-        pBuilder.vertex(pMatrix, (float)pX1, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
-        pBuilder.vertex(pMatrix, (float)pX1, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
-        pBuilder.vertex(pMatrix, (float)pX2, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
+        float f = (pColorA >> 24 & 255) / 255.0F;
+        float f1 = (pColorA >> 16 & 255) / 255.0F;
+        float f2 = (pColorA >> 8 & 255) / 255.0F;
+        float f3 = (pColorA & 255) / 255.0F;
+        float f4 = (pColorB >> 24 & 255) / 255.0F;
+        float f5 = (pColorB >> 16 & 255) / 255.0F;
+        float f6 = (pColorB >> 8 & 255) / 255.0F;
+        float f7 = (pColorB & 255) / 255.0F;
+        pBuilder.vertex(pMatrix, pX2, pY1, pBlitOffset).color(f1, f2, f3, f).endVertex();
+        pBuilder.vertex(pMatrix, pX1, pY1, pBlitOffset).color(f1, f2, f3, f).endVertex();
+        pBuilder.vertex(pMatrix, pX1, pY2, pBlitOffset).color(f5, f6, f7, f4).endVertex();
+        pBuilder.vertex(pMatrix, pX2, pY2, pBlitOffset).color(f5, f6, f7, f4).endVertex();
     }
 
     public int getBlitOffset() {

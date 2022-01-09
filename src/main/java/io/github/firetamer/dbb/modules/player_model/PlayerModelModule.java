@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.to_do.player_model;
+package io.github.firetamer.dbb.modules.player_model;
 
 import com.matyrobbrt.lib.annotation.RL;
 import com.matyrobbrt.lib.module.IModule;
