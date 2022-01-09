@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;
-import io.github.firetamer.dbb.api.player_data.skill.PlayerSkillType;
+import io.github.firetamer.dbb.api.player_data.PlayerSkill;
 import io.github.firetamer.dbb.client.DBBClientSetup;
 import io.github.firetamer.dbb.util.DBBResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -40,7 +40,7 @@ public class DragonBlockBeyond extends ModSetup {
 
         GeckoLib.initialize();
 
-        modBus.addGenericListener(PlayerSkillType.class, DragonBlockBeyond::registerSkillTypes);
+        modBus.addGenericListener(PlayerSkill.class, DragonBlockBeyond::registerSkillTypes);
 
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
@@ -59,9 +59,9 @@ public class DragonBlockBeyond extends ModSetup {
         return Optional.of(() -> new DBBClientSetup(modBus));
     }
 
-    public static final PlayerSkillType WEIRD_SKILL_TYPE = new PlayerSkillType().setRegistryName(new DBBResourceLocation("weird"));
+    public static final PlayerSkill WEIRD_SKILL_TYPE = new PlayerSkill().setRegistryName(new DBBResourceLocation("weird"));
 
-    public static void registerSkillTypes(final RegistryEvent.Register<PlayerSkillType> event) {
+    public static void registerSkillTypes(final RegistryEvent.Register<PlayerSkill> event) {
         event.getRegistry().register(WEIRD_SKILL_TYPE);
     }
 }

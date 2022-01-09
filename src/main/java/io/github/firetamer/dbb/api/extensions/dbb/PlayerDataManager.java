@@ -2,6 +2,7 @@ package io.github.firetamer.dbb.api.extensions.dbb;
 
 import io.github.firetamer.dbb.api.extensions.ApiExtendable;
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;
+import io.github.firetamer.dbb.api.player_data.PlayerSkill;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
@@ -42,13 +43,54 @@ public interface PlayerDataManager extends INBTSerializable<CompoundNBT> {
 
     /**
      * Getter for all the player data currently stored.
-     * <b>DO NOT MODIFY THE RETURNED DATA</b>
+     * <b>DO NOT MODIFY THE RETURNED DATA</b>. <br>
+     * Implementations should return an immutable map.
      *
      * @return all the currently stored {@link PlayerData}
      */
     Map<UUID, PlayerData> getAllPlayerData();
 
+    /**
+     * Marks the manager dirty, which means that it should be saved
+     */
     void setChanged();
+
+    /**
+     * Checks if the {@code player} has the specified {@link PlayerSkill}
+     *
+     * @param player the player to check
+     * @param skill  the skill to check for
+     * @return if the player has the skill
+     */
+    default boolean playerHasSkill(PlayerEntity player, PlayerSkill skill) {
+        return getDataForPlayer(player).getSkills().contains(skill);
+    }
+
+    /**
+     * Adds a {@link PlayerSkill} to the {@code player}
+     *
+     * @param player the player to add the skill to
+     * @param skill  the skill to add
+     */
+    default void addSkillToPlayer(PlayerEntity player, PlayerSkill skill) {
+        getDataForPlayer(player).getSkills().add(skill);
+        setChanged();
+    }
+
+    ;
+
+    /**
+     * Removes a {@link PlayerSkill} from the {@code player}
+     *
+     * @param player the player to remove the skill from
+     * @param skill  the skill to remove
+     */
+    default void removeSkillFromPlayer(PlayerEntity player, PlayerSkill skill) {
+        getDataForPlayer(player).getSkills().remove(skill);
+        setChanged();
+    }
+
+    ;
 
     @FunctionalInterface
     interface Getter extends ApiExtendable {

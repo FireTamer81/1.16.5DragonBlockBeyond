@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.util;
+package io.github.firetamer.dbb.util.nbt;
 
 import net.minecraft.nbt.ByteNBT;
 import net.minecraft.nbt.CompoundNBT;

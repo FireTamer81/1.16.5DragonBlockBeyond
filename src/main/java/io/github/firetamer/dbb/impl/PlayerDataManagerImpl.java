@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
 
 import com.matyrobbrt.lib.nbt.BaseNBTMap;
 
-import io.github.firetamer.dbb.util.NBTBuilder;
+import io.github.firetamer.dbb.util.nbt.NBTBuilder;
+import io.github.firetamer.dbb.util.nbt.NBTReader;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.StringNBT;
 import net.minecraft.world.World;
@@ -49,7 +50,9 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 	}
 
 	@Override
-	public Map<UUID, PlayerData> getAllPlayerData() { return playerData.locked(); }
+	public Map<UUID, PlayerData> getAllPlayerData() {
+		return playerData.locked();
+	}
 
 	@Override
 	public void setChanged() {
@@ -58,7 +61,8 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 
 	@Override
 	public void load(CompoundNBT nbt) {
-		playerData.deserializeNBT(nbt.getCompound("PlayerData"));
+		NBTReader.of(nbt)
+				.load("PlayerData", playerData);
 	}
 
 	@Override
@@ -71,6 +75,11 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 	static class PlayerDataMap extends BaseNBTMap<UUID, PlayerData, StringNBT, CompoundNBT> {
 
 		private boolean isLocked = false;
+
+		public PlayerDataMap(Map<? extends UUID, ? extends PlayerData> otherMap) {
+			this();
+			putAll(otherMap);
+		}
 
 		public PlayerDataMap() {
 			super(uuid -> StringNBT.valueOf(uuid.toString()), PlayerData::serializeNBT,
@@ -91,8 +100,7 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 		}
 
 		public PlayerDataMap locked() {
-			PlayerDataMap newMap = new PlayerDataMap();
-			newMap.putAll(this);
+			PlayerDataMap newMap = new PlayerDataMap(this);
 			newMap.isLocked = true;
 			return newMap;
 		}
@@ -140,7 +148,7 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 		@Override
 		public PlayerData compute(UUID key, BiFunction<? super UUID, ? super PlayerData, ? extends PlayerData> remappingFunction) {
 			if (isLocked) {
-				return  get(key);
+				return get(key);
 			}
 			return super.compute(key, remappingFunction);
 		}
@@ -148,7 +156,7 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 		@Override
 		public PlayerData computeIfPresent(UUID key, BiFunction<? super UUID, ? super PlayerData, ? extends PlayerData> remappingFunction) {
 			if (isLocked) {
-				return  get(key);
+				return get(key);
 			}
 			return super.computeIfPresent(key, remappingFunction);
 		}
