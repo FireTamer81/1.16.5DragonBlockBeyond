@@ -6,7 +6,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ToggleWidget;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldVertexBufferUploader;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.StringTextComponent;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
@@ -25,6 +30,7 @@ public class PlayerStatGui extends Screen {
 
     private ToggleWidget strengthButton;
     private boolean strengthButtonActivationState = false;
+
 
     protected Minecraft mc;
 
@@ -150,4 +156,8 @@ public class PlayerStatGui extends Screen {
         this.blit(stack, (int)(topLeftX), (int)(topLeftY), 0, 0, 236, 187);      //Main Background
         RenderSystem.popMatrix();
     }
+
+
+
+
 }

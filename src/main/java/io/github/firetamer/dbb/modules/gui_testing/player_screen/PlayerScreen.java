@@ -23,6 +23,8 @@ public class PlayerScreen extends Screen {
 
     private final MenuSelectorGui menuSelectorGui = new MenuSelectorGui();
     public static final PlayerStatGui STATS_SCREEN = new PlayerStatGui();
+    //public static final TestScreen STATS_SCREEN = new TestScreen();
+
 
     private float xMouse; //For the movement of the Rendered Entity
     private float yMouse;
