@@ -60,6 +60,15 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 	}
 
 	@Override
+	public void setDirty(boolean pDirty) {
+		super.setDirty(pDirty);
+		if (!pDirty) {
+			return;
+		}
+		syncWithClients();
+	}
+
+	@Override
 	public void load(CompoundNBT nbt) {
 		NBTReader.of(nbt).load("PlayerData", playerData);
 	}

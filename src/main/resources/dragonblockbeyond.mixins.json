@@ -1,12 +1,13 @@
 {
-	"required": true,
-	"package": "io.github.firetamer.dbb.mixin",
-	"compatibilityLevel": "JAVA_8",
-	"refmap": "dragonblockbeyond.refmap.json",
-	"mixins": [
-	],
-	"client": [
-		"client.ServerWorldInfoMixin"
-	],
-	"minVersion": "0.8"
+  "required": true,
+  "package": "io.github.firetamer.dbb.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "dragonblockbeyond.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "client.ForgeIngameGuiMixin",
+    "client.ServerWorldInfoMixin"
+  ],
+  "minVersion": "0.8"
 }
