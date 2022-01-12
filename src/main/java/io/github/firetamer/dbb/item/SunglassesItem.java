@@ -1,9 +1,7 @@
 package io.github.firetamer.dbb.item;
 
-import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.client.model.CustomArmourModel;
-import io.github.firetamer.dbb.client.model.SunglassesRenderer;
-import io.github.firetamer.dbb.item.api.IRenderableArmour;
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -15,7 +13,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import io.github.firetamer.dbb.DragonBlockBeyond;
+import io.github.firetamer.dbb.client.model.CustomArmourModel;
+import io.github.firetamer.dbb.client.model.SunglassesRenderer;
+import io.github.firetamer.dbb.item.api.IRenderableArmour;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SunglassesItem extends ArmorItem implements IRenderableArmour {
 
@@ -24,6 +27,7 @@ public class SunglassesItem extends ArmorItem implements IRenderableArmour {
     }
 
     @Override
+	@OnlyIn(Dist.CLIENT)
     public CustomArmourModel getModel(ItemStack stack) {
         GlassesModel glassesModel = getGlassesModel(stack);
         // TODO add the second model as well, along with fixing the model

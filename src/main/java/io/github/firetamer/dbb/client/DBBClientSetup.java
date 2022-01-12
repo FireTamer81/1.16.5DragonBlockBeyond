@@ -1,10 +1,9 @@
 package io.github.firetamer.dbb.client;
 
+import java.util.Map;
+
 import com.matyrobbrt.lib.ClientSetup;
-import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.api.client.ClientDataHolder;
-import io.github.firetamer.dbb.api.client.overlay.IIngameOverlay;
-import io.github.firetamer.dbb.client.armour.DBBArmourLayer;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -15,13 +14,16 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+
+import io.github.firetamer.dbb.DragonBlockBeyond;
+import io.github.firetamer.dbb.api.client.ClientDataHolder;
+import io.github.firetamer.dbb.api.client.overlay.IIngameOverlay;
+import io.github.firetamer.dbb.client.armour.DBBArmourLayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-
-import java.util.Map;
 
 public class DBBClientSetup extends ClientSetup {
 
@@ -52,6 +54,7 @@ public class DBBClientSetup extends ClientSetup {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void loadComplete(final FMLLoadCompleteEvent event) {
 		event.enqueueWork(() -> {
 			EntityRendererManager entityRenderManager = Minecraft.getInstance().getEntityRenderDispatcher();

@@ -1,19 +1,20 @@
 package io.github.firetamer.dbb.api.extensions.dbb;
 
-import io.github.firetamer.dbb.api.extensions.ApiExtendable;
-import io.github.firetamer.dbb.api.player_data.PlayerSkill;
-import io.github.firetamer.dbb.api.player_data.PlayerStat;
-import io.github.firetamer.dbb.api.player_data.PlayerStatType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.common.util.INBTSerializable;
-
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.nbt.CompoundNBT;
+
+import io.github.firetamer.dbb.api.extensions.ApiExtendable;
+import io.github.firetamer.dbb.api.player_data.PlayerSkill;
+import io.github.firetamer.dbb.api.player_data.PlayerStat;
+import io.github.firetamer.dbb.api.player_data.PlayerStatType;
+import net.minecraftforge.common.util.INBTSerializable;
 
 public interface PlayerData extends INBTSerializable<CompoundNBT> {
 

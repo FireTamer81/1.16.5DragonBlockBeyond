@@ -3,18 +3,6 @@ package io.github.firetamer.dbb;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import io.github.firetamer.dbb.api.extensions.ApiExtensions;
-import io.github.firetamer.dbb.api.extensions.dbb.PlayerDataManager;
-import io.github.firetamer.dbb.api.player_data.PlayerSkill;
-import io.github.firetamer.dbb.client.DBBClientSetup;
-import io.github.firetamer.dbb.events.PlayerSkillEvents;
-import io.github.firetamer.dbb.network.DBBNetwork;
-import io.github.firetamer.dbb.util.DBBResourceLocation;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,14 +10,26 @@ import com.matyrobbrt.lib.ClientSetup;
 import com.matyrobbrt.lib.ModSetup;
 import com.matyrobbrt.lib.registry.annotation.AnnotationProcessor;
 
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 
+import io.github.firetamer.dbb.api.extensions.ApiExtensions;
+import io.github.firetamer.dbb.api.extensions.dbb.PlayerDataManager;
+import io.github.firetamer.dbb.api.player_data.PlayerSkill;
 import io.github.firetamer.dbb.api.registry.DBBAnnotationProcessor;
+import io.github.firetamer.dbb.client.DBBClientSetup;
 import io.github.firetamer.dbb.common.item_groups.DBBBlocksItemGroup;
 import io.github.firetamer.dbb.common.item_groups.DBBItemGroup;
 import io.github.firetamer.dbb.common.worldgen.OreGeneration;
+import io.github.firetamer.dbb.events.PlayerSkillEvents;
+import io.github.firetamer.dbb.network.DBBNetwork;
+import io.github.firetamer.dbb.util.DBBResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import software.bernie.geckolib3.GeckoLib;
 
 @Mod(DragonBlockBeyond.MOD_ID)
