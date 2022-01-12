@@ -11,7 +11,6 @@ import io.github.firetamer.dbb.events.PlayerSkillEvents;
 import io.github.firetamer.dbb.network.DBBNetwork;
 import io.github.firetamer.dbb.util.DBBResourceLocation;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,7 +24,7 @@ import com.matyrobbrt.lib.registry.annotation.AnnotationProcessor;
 
 import net.minecraft.item.ItemGroup;
 
-import io.github.firetamer.dbb.common.DBBAnnotationProcessor;
+import io.github.firetamer.dbb.api.registry.DBBAnnotationProcessor;
 import io.github.firetamer.dbb.common.item_groups.DBBBlocksItemGroup;
 import io.github.firetamer.dbb.common.item_groups.DBBItemGroup;
 import io.github.firetamer.dbb.common.worldgen.OreGeneration;
@@ -41,7 +40,6 @@ public class DragonBlockBeyond extends ModSetup {
     public static final ItemGroup MAIN_GROUP = new DBBItemGroup("dbb_main_itemgroup");
     public static final ItemGroup BLOCKS_GROUP = new DBBBlocksItemGroup("dbb_blocks_itemgroup");
     public static final DBBAnnotationProcessor ANNOTATION_PROCESSOR = new DBBAnnotationProcessor(MOD_ID);
-
 
     public DragonBlockBeyond() {
         super(MOD_ID);
