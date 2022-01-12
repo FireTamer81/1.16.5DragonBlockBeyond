@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 public class PlayerSkillEvents {
 
 	public void register(final IEventBus forgeBus, final IEventBus modBus) {
-
+		forgeBus.addListener(this::onPlayerTick);
 	}
 
 	private void onPlayerTick(final TickEvent.PlayerTickEvent event) {
@@ -20,11 +20,6 @@ public class PlayerSkillEvents {
 			}
 			PlayerDataManager.getManagerForServer(serverPlayerEntity.getServer())
 					.getDataForPlayer(serverPlayerEntity).getSkills().forEach(skill -> skill.onPlayerServerTick(serverPlayerEntity, event.phase));
-		} else {
-			// There is no import due to this class being loaded on both client and server, but the client
-			// player entity class is Client-side only
-			ClientDataHolder.getPlayerDataManager().getDataForPlayer(event.player)
-					.getSkills().forEach(skill -> skill.onPlayerClientTick((net.minecraft.client.entity.player.ClientPlayerEntity) event.player, event.phase));
 		}
 	}
 
