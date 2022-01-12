@@ -107,6 +107,21 @@ class PlayerDataManagerImpl extends WorldSavedData implements PlayerDataManager 
 			return super.get(key);
 		}
 
+		@Override
+		public CompoundNBT serializeNBT() {
+			CompoundNBT tag = new CompoundNBT();
+			forEach((uuid, playerData) -> tag.put(uuid.toString(), playerData.serializeNBT()));
+			return tag;
+		}
+
+		@Override
+		public void deserializeNBT(CompoundNBT nbt) {
+			nbt.getAllKeys().forEach(key -> {
+				put(UUID.fromString(key), ApiExtensions.withExtension(PlayerData.Deserializer.class,
+						ext -> ext.deserialize(nbt.getCompound(key))));
+			});
+		}
+
 		public PlayerDataMap locked() {
 			PlayerDataMap newMap = new PlayerDataMap(this);
 			newMap.isLocked = true;

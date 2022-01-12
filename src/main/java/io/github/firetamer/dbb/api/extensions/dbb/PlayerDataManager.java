@@ -5,6 +5,8 @@ import io.github.firetamer.dbb.api.client.ClientDataHolder;
 import io.github.firetamer.dbb.api.extensions.ApiExtendable;
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;
 import io.github.firetamer.dbb.api.player_data.PlayerSkill;
+import io.github.firetamer.dbb.api.player_data.PlayerStatType;
+import io.github.firetamer.dbb.api.player_data.PlayerStat;
 import io.github.firetamer.dbb.network.DBBNetwork;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -25,7 +27,7 @@ public interface PlayerDataManager extends INBTSerializable<CompoundNBT> {
 
     /**
      * Gets the data for the player with the specified {@code playerUUID}. <br>
-     * This will create the data if it doesn't exist
+     * This will create the data if it doesn't exist.
      *
      * @param playerUUID the UUID to get the data for
      * @return the data of the player with the uuid
@@ -91,6 +93,19 @@ public interface PlayerDataManager extends INBTSerializable<CompoundNBT> {
      */
     default void removeSkillFromPlayer(PlayerEntity player, PlayerSkill skill) {
         getDataForPlayer(player).getSkills().remove(skill);
+        setChanged();
+    }
+
+    /**
+     * Sets the {@link PlayerStat#value} of
+     * the {@link PlayerStatType} for a plyaer
+     * @param player the player to set the stat value to
+     * @param statType the type of the stat
+     * @param newValue the new stat value
+     * @param <T> the type of the stat
+     */
+    default <T> void setStatValue(PlayerEntity player, PlayerStatType<T> statType, T newValue) {
+        getDataForPlayer(player).setStatValue(statType, newValue);
         setChanged();
     }
 
