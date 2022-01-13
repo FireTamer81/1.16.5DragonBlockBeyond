@@ -1,9 +1,15 @@
 package io.github.firetamer.dbb.api.extensions.dbb;
 
+import com.matyrobbrt.lib.network.BaseNetwork;
+import io.github.firetamer.dbb.api.client.ClientDataHolder;
 import io.github.firetamer.dbb.api.extensions.ApiExtendable;
 import io.github.firetamer.dbb.api.extensions.ApiExtensions;
 import io.github.firetamer.dbb.api.player_data.PlayerSkill;
+import io.github.firetamer.dbb.api.player_data.PlayerStatType;
+import io.github.firetamer.dbb.api.player_data.PlayerStat;
+import io.github.firetamer.dbb.network.DBBNetwork;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -21,7 +27,7 @@ public interface PlayerDataManager extends INBTSerializable<CompoundNBT> {
 
     /**
      * Gets the data for the player with the specified {@code playerUUID}. <br>
-     * This will create the data if it doesn't exist
+     * This will create the data if it doesn't exist.
      *
      * @param playerUUID the UUID to get the data for
      * @return the data of the player with the uuid
@@ -90,7 +96,33 @@ public interface PlayerDataManager extends INBTSerializable<CompoundNBT> {
         setChanged();
     }
 
-    ;
+    /**
+     * Sets the {@link PlayerStat#value} of
+     * the {@link PlayerStatType} for a plyaer
+     * @param player the player to set the stat value to
+     * @param statType the type of the stat
+     * @param newValue the new stat value
+     * @param <T> the type of the stat
+     */
+    default <T> void setStatValue(PlayerEntity player, PlayerStatType<T> statType, T newValue) {
+        getDataForPlayer(player).setStatValue(statType, newValue);
+        setChanged();
+    }
+
+    /**
+     * Syncs the manager with all the players in the server
+     */
+    default void syncWithClients() {
+        BaseNetwork.sendToAll(DBBNetwork.INSTANCE.mainChannel, new ClientDataHolder.PlayerDataSyncMessage(this));
+    }
+
+    /**
+     * Syncs the manager to a specific {@code player}
+     * @param player the player to sync the data with
+     */
+    default void syncWithPlayer(ServerPlayerEntity player) {
+        BaseNetwork.sendTo(DBBNetwork.INSTANCE.mainChannel, new ClientDataHolder.PlayerDataSyncMessage(this), player);
+    }
 
     @FunctionalInterface
     interface Getter extends ApiExtendable {
