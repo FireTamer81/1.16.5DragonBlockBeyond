@@ -9,6 +9,11 @@ import com.matyrobbrt.lib.registry.annotation.RegisterBlock;
 import com.matyrobbrt.lib.registry.annotation.RegisterItem;
 import com.matyrobbrt.lib.registry.annotation.RegisterTileEntityType;
 
+import io.github.firetamer.dbb.modules.strong_block.blocks.PaintMixer;
+import io.github.firetamer.dbb.modules.strong_block.client.PaintMixerRenderer;
+import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
+import io.github.firetamer.dbb.modules.time_chamber.client.TimeChamberDoorRenderer;
+import io.github.firetamer.dbb.modules.time_chamber.tiles.TimeChamberDoorTile;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -19,10 +24,10 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.modules.strong_block.blocks.StrongBlockTile;
-import io.github.firetamer.dbb.modules.strong_block.blocks.WarenaiBlock;
-import io.github.firetamer.dbb.modules.strong_block.blocks.WarenaiBlockLoader;
-import io.github.firetamer.dbb.modules.strong_block.blocks.WarenaiBlockModel;
+import io.github.firetamer.dbb.modules.strong_block.tiles.StrongBlockTile;
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockLoader;
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockModel;
 import io.github.firetamer.dbb.modules.strong_block.items.DamageItem;
 import io.github.firetamer.dbb.modules.strong_block.items.PolisherItem;
 import io.github.firetamer.dbb.modules.strong_block.items.RepairItem;
@@ -34,12 +39,25 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = DragonBlockBeyond.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 @Module(id = @RL(modid = DragonBlockBeyond.MOD_ID, path = "strong_block"))
 public class StrongBlockModule extends ModuleHelper implements IModule {
+
+    //PaintMixer
+    @AutoBlockItem
+    @RegisterBlock("paint_mixer_block")
+    public static final PaintMixer PAINT_MIXER_BLOCK = new PaintMixer();
+
+    @RegisterTileEntityType("paint_mixer_tile")
+    public static final TileEntityType<PaintMixerTile> PAINT_MIXER_TILE = TileEntityType.Builder
+            .of(PaintMixerTile::new, PAINT_MIXER_BLOCK).build(null);
+
+
+
 
     @AutoBlockItem
     @RegisterBlock("warenai_strong_block")
@@ -65,8 +83,22 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
     public static final Item WEDGE_ITEM = new WedgeItem(new Item.Properties().durability(2000));
 
 
+
+
+
+
+
+
+
+    /******************************************************************************************************************/
+    //Events
+    /******************************************************************************************************************/
+
     @Override
     public void onClientSetup(FMLClientSetupEvent event) {
+        ClientRegistry.bindTileEntityRenderer(PAINT_MIXER_TILE, PaintMixerRenderer::new);
+
+
         BlockColors.registerBlockColors();
         RenderTypeLookup.setRenderLayer(WARENAI_STRONG_BLOCK, RenderType.translucent());
     }

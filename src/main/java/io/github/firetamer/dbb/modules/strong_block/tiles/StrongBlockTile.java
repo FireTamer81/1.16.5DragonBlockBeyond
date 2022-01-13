@@ -1,5 +1,6 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks;
+package io.github.firetamer.dbb.modules.strong_block.tiles;
 
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
 
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
-import io.github.firetamer.dbb.modules.strong_block.blocks.WarenaiBlock;
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
 
 public class BlockColors implements IBlockColor {
 

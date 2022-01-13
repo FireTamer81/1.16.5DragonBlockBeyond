@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-import io.github.firetamer.dbb.modules.strong_block.blocks.StrongBlockTile;
+import io.github.firetamer.dbb.modules.strong_block.tiles.StrongBlockTile;
 
 public class RepairItem extends Item
 {

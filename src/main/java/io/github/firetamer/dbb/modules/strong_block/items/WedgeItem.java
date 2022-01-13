@@ -20,7 +20,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-import io.github.firetamer.dbb.modules.strong_block.blocks.WarenaiBlock;
+import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

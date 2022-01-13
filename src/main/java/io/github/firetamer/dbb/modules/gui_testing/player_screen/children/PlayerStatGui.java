@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ToggleWidget;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -12,6 +13,7 @@ import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
@@ -136,11 +138,11 @@ public class PlayerStatGui extends Screen {
 
         this.strengthButton.render(stack, p_230430_2_, p_230430_3_, p_230430_4_);
 
-        //ITextComponent strengthButtonText = new StringTextComponent("Hello, this is the Strength Button");
-        //int strengthButtonTopLeftPosX = (int)(topLeftX + 10);
-        //int strengthButtonTopLeftPosY = (int)(topLeftY + 20);
-        //FontRenderer fontRenderer = this.mc.font;
-        //drawCenteredString(stack, fontRenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
+        ITextComponent strengthButtonText = new StringTextComponent("Hello, this is the Strength Button");
+        int strengthButtonTopLeftPosX = (int)(topLeftX + 10);
+        int strengthButtonTopLeftPosY = (int)(topLeftY + 20);
+        FontRenderer fontRenderer = this.mc.font;
+        drawCenteredString(stack, fontRenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
         //drawString(stack, fontRenderer, strengthButtonText, strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
         //this.mc.font.draw(stack, "Hello All", strengthButtonTopLeftPosX, strengthButtonTopLeftPosY, 0xFFFFFF);
 

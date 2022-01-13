@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks;
+package io.github.firetamer.dbb.modules.strong_block.blocks.full_block;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

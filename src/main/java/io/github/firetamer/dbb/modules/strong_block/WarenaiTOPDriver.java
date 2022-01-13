@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
-import io.github.firetamer.dbb.modules.strong_block.blocks.StrongBlockTile;
+import io.github.firetamer.dbb.modules.strong_block.tiles.StrongBlockTile;
 import io.github.firetamer.dbb.util.helper.WorldHelper;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
