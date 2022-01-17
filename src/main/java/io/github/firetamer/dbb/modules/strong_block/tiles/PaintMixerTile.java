@@ -1,13 +1,9 @@
 package io.github.firetamer.dbb.modules.strong_block.tiles;
 
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
-import io.github.firetamer.dbb.modules.strong_block.blocks.PaintMixer;
+import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.PaintMixer;
 import io.github.firetamer.dbb.modules.strong_block.util.PaintMixerAnimationEnum;
-import io.github.firetamer.dbb.modules.time_chamber.blocks.TimeChamberDoorBlock;
-import io.github.firetamer.dbb.modules.time_chamber.tiles.TimeChamberDoorTile;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -16,7 +12,6 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class PaintMixerTile extends TileEntity implements IAnimatable {
 

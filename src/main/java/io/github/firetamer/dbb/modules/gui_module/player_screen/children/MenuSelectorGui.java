@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing.player_screen.children;
+package io.github.firetamer.dbb.modules.gui_module.player_screen.children;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;

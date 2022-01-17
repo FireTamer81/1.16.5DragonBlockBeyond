@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing.player_screen;
+package io.github.firetamer.dbb.modules.gui_module.player_screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -15,15 +15,15 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.StringTextComponent;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.modules.gui_testing.player_screen.children.MenuSelectorGui;
-import io.github.firetamer.dbb.modules.gui_testing.player_screen.children.PlayerStatGui;
+import io.github.firetamer.dbb.modules.gui_module.player_screen.children.MenuSelectorGui;
+import io.github.firetamer.dbb.modules.gui_module.player_screen.children.PlayerStatGui;
 
 public class PlayerScreen extends Screen {
     public static final ResourceLocation GEAR_LOCATION = new ResourceLocation(DragonBlockBeyond.MOD_ID, "textures/gui/dragonball_gear.png");
 
     private final MenuSelectorGui menuSelectorGui = new MenuSelectorGui();
     public static final PlayerStatGui STATS_SCREEN = new PlayerStatGui();
-    //public static final TestScreen STATS_SCREEN = new TestScreen();
+    //public static final TestScreen STATS_SCREEN = new TestGUI();
 
 
     private float xMouse; //For the movement of the Rendered Entity

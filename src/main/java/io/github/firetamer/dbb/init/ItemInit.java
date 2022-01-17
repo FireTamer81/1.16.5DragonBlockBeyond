@@ -3,8 +3,8 @@ package io.github.firetamer.dbb.init;
 import com.matyrobbrt.lib.registry.annotation.RegisterItem;
 import com.matyrobbrt.lib.registry.annotation.RegistryHolder;
 
-import io.github.firetamer.dbb.item.SunglassesItem;
-import io.github.firetamer.dbb.item.api.SpecialArmourMaterial;
+import io.github.firetamer.dbb.init.objects.item.SunglassesItem;
+import io.github.firetamer.dbb.init.objects.item.api.SpecialArmourMaterial;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 

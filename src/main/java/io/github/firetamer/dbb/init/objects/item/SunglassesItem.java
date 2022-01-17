@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.item;
+package io.github.firetamer.dbb.init.objects.item;
 
 import javax.annotation.Nullable;
 
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import io.github.firetamer.dbb.DragonBlockBeyond;
 import io.github.firetamer.dbb.client.model.CustomArmourModel;
 import io.github.firetamer.dbb.client.model.SunglassesRenderer;
-import io.github.firetamer.dbb.item.api.IRenderableArmour;
+import io.github.firetamer.dbb.init.objects.item.api.IRenderableArmour;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

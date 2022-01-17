@@ -14,4 +14,4 @@
  *     Paint Mixer Screen (Will have a color picker thingy to fully utilize all 16 Million+ colors :)  )
  *     Story Customization Screen for when the story system stuff is done (might be like the resource pack screen, removing and adding downloaded stories)
  */
-package io.github.firetamer.dbb.modules.gui_testing;
+package io.github.firetamer.dbb.modules.gui_module;

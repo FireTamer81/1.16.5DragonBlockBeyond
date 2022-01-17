@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.item.api;
+package io.github.firetamer.dbb.init.objects.item.api;
 
 import io.github.firetamer.dbb.client.model.CustomArmourModel;
 import net.minecraft.item.ItemStack;

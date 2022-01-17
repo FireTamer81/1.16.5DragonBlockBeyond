@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing;
+package io.github.firetamer.dbb.modules.gui_module;
 
 import java.awt.event.KeyEvent;
 import java.util.function.Consumer;
@@ -13,11 +13,9 @@ import io.github.firetamer.dbb.api.client.overlay.OverlayRegistry;
 import net.minecraft.client.Minecraft;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.modules.gui_testing.player_screen.PlayerScreen;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import io.github.firetamer.dbb.modules.gui_module.player_screen.PlayerScreen;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Module(id = @RL(modid = DragonBlockBeyond.MOD_ID, path = "gui_testing_module"))
 public class GuiModule extends ModuleHelper implements IModule {

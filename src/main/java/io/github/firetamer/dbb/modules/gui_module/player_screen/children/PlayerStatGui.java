@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_testing.player_screen.children;
+package io.github.firetamer.dbb.modules.gui_module.player_screen.children;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -7,12 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ToggleWidget;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldVertexBufferUploader;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -46,7 +41,7 @@ public class PlayerStatGui extends Screen {
         this.height = heightIn;
         this.topLeftX = 200;
         this.topLeftY = 150;
-        this.isDragging = false;
+        //this.isDragging = false;
 
         this.initButtons();
     }
@@ -89,6 +84,7 @@ public class PlayerStatGui extends Screen {
                 return false;
             }
         }
+
     }
 
 
@@ -152,7 +148,7 @@ public class PlayerStatGui extends Screen {
 
     private void renderBG(MatrixStack stack) {
         RenderSystem.pushMatrix();
-        RenderSystem.translatef(0.0f, 0.0f, 100.0f);
+        RenderSystem.translatef(0.0f, 0.0f, 0.0f);
         this.mc.getTextureManager().bind(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.blit(stack, (int)(topLeftX), (int)(topLeftY), 0, 0, 236, 187);      //Main Background

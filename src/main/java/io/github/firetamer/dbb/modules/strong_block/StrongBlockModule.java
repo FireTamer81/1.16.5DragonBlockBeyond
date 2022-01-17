@@ -9,11 +9,11 @@ import com.matyrobbrt.lib.registry.annotation.RegisterBlock;
 import com.matyrobbrt.lib.registry.annotation.RegisterItem;
 import com.matyrobbrt.lib.registry.annotation.RegisterTileEntityType;
 
-import io.github.firetamer.dbb.modules.strong_block.blocks.PaintMixer;
+import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.PaintMixer;
+import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFiller;
+import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFillerLoader;
 import io.github.firetamer.dbb.modules.strong_block.client.PaintMixerRenderer;
 import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
-import io.github.firetamer.dbb.modules.time_chamber.client.TimeChamberDoorRenderer;
-import io.github.firetamer.dbb.modules.time_chamber.tiles.TimeChamberDoorTile;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -47,17 +47,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Module(id = @RL(modid = DragonBlockBeyond.MOD_ID, path = "strong_block"))
 public class StrongBlockModule extends ModuleHelper implements IModule {
 
-    //PaintMixer
-    @AutoBlockItem
-    @RegisterBlock("paint_mixer_block")
-    public static final PaintMixer PAINT_MIXER_BLOCK = new PaintMixer();
-
-    @RegisterTileEntityType("paint_mixer_tile")
-    public static final TileEntityType<PaintMixerTile> PAINT_MIXER_TILE = TileEntityType.Builder
-            .of(PaintMixerTile::new, PAINT_MIXER_BLOCK).build(null);
-
-
-
 
     @AutoBlockItem
     @RegisterBlock("warenai_strong_block")
@@ -87,6 +76,22 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
 
 
 
+    /******************************************************************************************************************/
+    //Paint Mixer Machine Stuff
+    /******************************************************************************************************************/
+    //PaintMixer
+    @AutoBlockItem
+    @RegisterBlock("paint_mixer_block")
+    public static final PaintMixer PAINT_MIXER_BLOCK = new PaintMixer();
+
+    @RegisterTileEntityType("paint_mixer_tile")
+    public static final TileEntityType<PaintMixerTile> PAINT_MIXER_TILE = TileEntityType.Builder
+            .of(PaintMixerTile::new, PAINT_MIXER_BLOCK).build(null);
+
+    @AutoBlockItem
+    @RegisterBlock("paint_mixer_shape_filler_block")
+    public static final PaintMixerShapeFiller PAINT_MIXER_SHAPE_FILLER = new PaintMixerShapeFiller();
+
 
 
 
@@ -101,11 +106,13 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
 
         BlockColors.registerBlockColors();
         RenderTypeLookup.setRenderLayer(WARENAI_STRONG_BLOCK, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(PAINT_MIXER_SHAPE_FILLER, RenderType.translucent());
     }
 
     @SubscribeEvent
     public static void onModelRegistryEvent(ModelRegistryEvent event) {
         ModelLoaderRegistry.registerLoader(new ResourceLocation(DragonBlockBeyond.MOD_ID, "warenai_full_block_loader"), new WarenaiBlockLoader());
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(DragonBlockBeyond.MOD_ID, "paint_mixer_shape_filler_loader"), new PaintMixerShapeFillerLoader());
     }
 
 	@SuppressWarnings("deprecation")

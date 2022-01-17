@@ -42,5 +42,6 @@ public class DBBBlocksItemGroup extends ItemGroup {
 
         items.add(StrongBlockModule.WARENAI_STRONG_BLOCK.asItem().getDefaultInstance());
         items.add(StrongBlockModule.PAINT_MIXER_BLOCK.asItem().getDefaultInstance());
+        items.add(StrongBlockModule.PAINT_MIXER_SHAPE_FILLER.asItem().getDefaultInstance());
     }
 }
