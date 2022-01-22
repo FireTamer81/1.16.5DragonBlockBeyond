@@ -4,21 +4,22 @@ import com.matyrobbrt.lib.annotation.RL;
 import com.matyrobbrt.lib.module.IModule;
 import com.matyrobbrt.lib.module.Module;
 import com.matyrobbrt.lib.module.ModuleHelper;
-import com.matyrobbrt.lib.registry.annotation.AutoBlockItem;
-import com.matyrobbrt.lib.registry.annotation.RegisterBlock;
-import com.matyrobbrt.lib.registry.annotation.RegisterItem;
-import com.matyrobbrt.lib.registry.annotation.RegisterTileEntityType;
+import com.matyrobbrt.lib.registry.annotation.*;
 
 import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.PaintMixer;
 import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFiller;
 import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFillerLoader;
 import io.github.firetamer.dbb.modules.strong_block.client.PaintMixerRenderer;
+import io.github.firetamer.dbb.modules.strong_block.client.PaintMixerScreen;
+import io.github.firetamer.dbb.modules.strong_block.containers.PaintMixerContainer;
 import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -33,11 +34,14 @@ import io.github.firetamer.dbb.modules.strong_block.items.PolisherItem;
 import io.github.firetamer.dbb.modules.strong_block.items.RepairItem;
 import io.github.firetamer.dbb.modules.strong_block.items.WedgeItem;
 import io.github.firetamer.dbb.modules.strong_block.util.BlockColors;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -88,6 +92,13 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
     public static final TileEntityType<PaintMixerTile> PAINT_MIXER_TILE = TileEntityType.Builder
             .of(PaintMixerTile::new, PAINT_MIXER_BLOCK).build(null);
 
+    @RegisterContainerType("paint_mixer_container")
+    public static final ContainerType<PaintMixerContainer> PAINT_MIXER_CONTAINER = IForgeContainerType.create(((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        World world = inv.player.level;
+        return new PaintMixerContainer(windowId, world, pos, inv, inv.player);
+    }));
+
     @AutoBlockItem
     @RegisterBlock("paint_mixer_shape_filler_block")
     public static final PaintMixerShapeFiller PAINT_MIXER_SHAPE_FILLER = new PaintMixerShapeFiller();
@@ -103,10 +114,14 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
     public void onClientSetup(FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(PAINT_MIXER_TILE, PaintMixerRenderer::new);
 
-
         BlockColors.registerBlockColors();
         RenderTypeLookup.setRenderLayer(WARENAI_STRONG_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(PAINT_MIXER_SHAPE_FILLER, RenderType.translucent());
+
+        event.enqueueWork(() -> {
+            //ScreenManager.register(PAINT_MIXER_CONTAINER, PaintMixerScreen::new);
+            ScreenManager.register(PAINT_MIXER_CONTAINER, PaintMixerScreen::new);
+        });
     }
 
     @SubscribeEvent

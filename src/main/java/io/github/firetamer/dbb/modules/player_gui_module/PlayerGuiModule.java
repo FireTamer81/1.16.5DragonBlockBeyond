@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.gui_module;
+package io.github.firetamer.dbb.modules.player_gui_module;
 
 import java.awt.event.KeyEvent;
 import java.util.function.Consumer;
@@ -13,12 +13,12 @@ import io.github.firetamer.dbb.api.client.overlay.OverlayRegistry;
 import net.minecraft.client.Minecraft;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.modules.gui_module.player_screen.PlayerScreen;
+import io.github.firetamer.dbb.modules.player_gui_module.player_screen.PlayerScreen;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Module(id = @RL(modid = DragonBlockBeyond.MOD_ID, path = "gui_testing_module"))
-public class GuiModule extends ModuleHelper implements IModule {
+public class PlayerGuiModule extends ModuleHelper implements IModule {
 
     /*
     * These will be used to open the various GUIs I will be making in this module

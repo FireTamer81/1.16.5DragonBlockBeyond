@@ -1,6 +1,6 @@
 import io.github.firetamer.dbb.DragonBlockBeyond;
 import io.github.firetamer.dbb.api.client.overlay.OverlayRegistry;
-import io.github.firetamer.dbb.modules.gui_module.player_screen.PlayerScreen;
+import io.github.firetamer.dbb.modules.player_gui_module.player_screen.PlayerScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

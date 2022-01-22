@@ -2,20 +2,33 @@ package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer;
 
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
 import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFiller;
+import io.github.firetamer.dbb.modules.strong_block.containers.PaintMixerContainer;
+import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
 import io.github.firetamer.dbb.modules.strong_block.util.CustomBlockstateProperties;
 import io.github.firetamer.dbb.modules.strong_block.util.PaintMixerAnimationEnum;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -33,8 +46,45 @@ public class PaintMixer extends HorizontalBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
-    {
+    public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
+        if(!pLevel.isClientSide()) {
+            TileEntity tile = pLevel.getBlockEntity(pPos);
+
+            if(!pPlayer.isCrouching()) {
+                if(tile instanceof PaintMixerTile) {
+                    INamedContainerProvider containerProvider = createContainerProvider(pLevel, pPos);
+
+                    NetworkHooks.openGui(((ServerPlayerEntity)pPlayer), containerProvider, tile.getBlockPos());
+                } else {
+                    throw new IllegalStateException("The Container Provider is Missing");
+                }
+            } else {
+                if(tile instanceof PaintMixerTile) {
+                    ((PaintMixerTile)tile).mixNewPaintCan();
+                }
+            }
+        }
+
+        return ActionResultType.SUCCESS;
+    }
+
+    private INamedContainerProvider createContainerProvider(World pLevel, BlockPos pPos) {
+        return new INamedContainerProvider() {
+            @Override
+            public ITextComponent getDisplayName() {
+                return new StringTextComponent("");
+            }
+
+            @Nullable
+            @Override
+            public Container createMenu(int i, PlayerInventory playerInv, PlayerEntity playerEntity) {
+                return new PaintMixerContainer(i, pLevel, pPos, playerInv, playerEntity);
+            }
+        };
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction direction = context.getHorizontalDirection().getOpposite();
         BlockPos blockpos = context.getClickedPos();
         BlockPos blockpos1 = blockpos.relative(direction);
@@ -82,7 +132,8 @@ public class PaintMixer extends HorizontalBlock {
             addFillerBlocks(pLevel, pPos.above().north().west(), 17, d);
             addFillerBlocks(pLevel, pPos.above().north().east(), 18, d);
 
-        } else if (pState.getValue(FACING).equals(Direction.EAST)) {
+        }
+        else if (pState.getValue(FACING).equals(Direction.EAST)) {
             Direction d = Direction.EAST;
 
             addFillerBlocks(pLevel, pPos.east(), 1, d);
@@ -104,7 +155,8 @@ public class PaintMixer extends HorizontalBlock {
             addFillerBlocks(pLevel, pPos.above().east().north(), 17, d);
             addFillerBlocks(pLevel, pPos.above().east().south(), 18, d);
 
-        } else if (pState.getValue(FACING).equals(Direction.SOUTH)) {
+        }
+        else if (pState.getValue(FACING).equals(Direction.SOUTH)) {
             Direction d = Direction.SOUTH;
 
             addFillerBlocks(pLevel, pPos.south(), 1, d);
@@ -126,7 +178,8 @@ public class PaintMixer extends HorizontalBlock {
             addFillerBlocks(pLevel, pPos.above().south().east(), 17, d);
             addFillerBlocks(pLevel, pPos.above().south().west(), 18, d);
 
-        } else if (pState.getValue(FACING).equals(Direction.WEST)) {
+        }
+        else if (pState.getValue(FACING).equals(Direction.WEST)) {
             Direction d = Direction.WEST;
 
             addFillerBlocks(pLevel, pPos.west(), 1, d);

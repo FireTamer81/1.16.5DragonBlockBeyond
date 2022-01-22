@@ -127,14 +127,157 @@ public class PaintMixerShapeFiller extends HorizontalBlock {
 
     @Override
     public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getValue(SHAPE_SELECTION).equals(1)) {
-            switch (pState.getValue(FACING)) {
-                default:
-                    return;
-                case NORTH:
-                    pLevel.destroyBlock(pPos.south(), true);
-            }
+        //Currently, this positions are entirely correct, but having all of this in the break method causes problems.
+        //You break one, it finds the center block, then the center block breaks all of the others, which makes a much larger area disappear.
+        //Don't know of a way to fix it yet, btu for right now it's there for later use.
+        /**
+        switch(pState.getValue(SHAPE_SELECTION)) {
+            case 1:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.south(), true);
+                    case EAST: pLevel.destroyBlock(pPos.west(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.north(), true);
+                    case WEST: pLevel.destroyBlock(pPos.east(), true);
+                }
+            case 2:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.south().east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.west().south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.north().west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.east().north(), true);
+                }
+            case 3:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.north(), true);
+                }
+            case 4:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.west(), true);
+                    case EAST: pLevel.destroyBlock(pPos.north(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.east(), true);
+                    case WEST: pLevel.destroyBlock(pPos.south(), true);
+                }
+            case 5:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.west(2), true);
+                    case EAST: pLevel.destroyBlock(pPos.north(2), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.east(2), true);
+                    case WEST: pLevel.destroyBlock(pPos.south(2), true);
+                }
+            case 6:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.west().south(), true);
+                    case EAST: pLevel.destroyBlock(pPos.north().west(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.east().north(), true);
+                    case WEST: pLevel.destroyBlock(pPos.south().east(), true);
+                }
+            case 7:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.north(), true);
+                    case EAST: pLevel.destroyBlock(pPos.east(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.south(), true);
+                    case WEST: pLevel.destroyBlock(pPos.west(), true);
+                }
+            case 8:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.north().east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.east().south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.south().west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.west().north(), true);
+                }
+            case 9:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.north().west(), true);
+                    case EAST: pLevel.destroyBlock(pPos.east().north(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.south().east(), true);
+                    case WEST: pLevel.destroyBlock(pPos.west().south(), true);
+                }
+            case 10:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().west(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().north(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().east(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().south(), true);
+                }
+            case 11:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().north(), true);
+                }
+            case 12:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().north().east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().east().south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().south().west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().west().north(), true);
+                }
+            case 13:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().north().west(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().east().north(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().south().east(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().west().south(), true);
+                }
+            case 14:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().north(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().east(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().south(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().west(), true);
+                }
+            case 15:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().south(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().west(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().north(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().east(), true);
+                }
+            case 16:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below(), true);
+                }
+            case 17:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().south().east(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().west().south(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().north().west(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().east().north(), true);
+                }
+            case 18:
+                switch (pState.getValue(FACING)) {
+                    default: return;
+                    case NORTH: pLevel.destroyBlock(pPos.below().south().west(), true);
+                    case EAST: pLevel.destroyBlock(pPos.below().west().north(), true);
+                    case SOUTH: pLevel.destroyBlock(pPos.below().north().east(), true);
+                    case WEST: pLevel.destroyBlock(pPos.below().east().south(), true);
+                }
         }
+        **/
     }
 
     @Override
