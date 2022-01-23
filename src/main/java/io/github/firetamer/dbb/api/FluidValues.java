@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.common;
+package io.github.firetamer.dbb.api;
 
 public enum FluidValues {
 

@@ -42,7 +42,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.common.FluidValues;
+import io.github.firetamer.dbb.api.FluidValues;
 import io.github.firetamer.dbb.init.BlockInit;
 import io.github.firetamer.dbb.modules.namek.blocks.AjisaBush;
 import io.github.firetamer.dbb.modules.namek.blocks.NamekGrass;

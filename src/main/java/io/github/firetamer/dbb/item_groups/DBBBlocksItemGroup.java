@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.common.item_groups;
+package io.github.firetamer.dbb.item_groups;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

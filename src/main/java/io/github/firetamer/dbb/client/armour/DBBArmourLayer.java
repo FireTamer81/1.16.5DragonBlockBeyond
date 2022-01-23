@@ -3,7 +3,7 @@ package io.github.firetamer.dbb.client.armour;
 import com.matyrobbrt.lib.util.Utils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import io.github.firetamer.dbb.client.model.CustomArmourModel;
-import io.github.firetamer.dbb.init.objects.item.api.IRenderableArmour;
+import io.github.firetamer.dbb.api.item.IRenderableArmour;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;

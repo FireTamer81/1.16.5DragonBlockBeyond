@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.init.objects.item.api;
+package io.github.firetamer.dbb.api.item;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;

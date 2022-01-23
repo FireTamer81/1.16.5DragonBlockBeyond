@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.common.worldgen;
+package io.github.firetamer.dbb.worldgen;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
