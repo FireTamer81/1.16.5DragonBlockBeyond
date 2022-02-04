@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

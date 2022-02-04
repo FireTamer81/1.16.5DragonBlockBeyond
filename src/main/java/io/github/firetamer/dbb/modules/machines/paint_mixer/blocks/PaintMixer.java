@@ -1,13 +1,14 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.blocks;
 
+import io.github.firetamer.dbb.modules.machines.MachinesModule;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.util.PaintMixerBlockStateProperties;
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
-import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler.PaintMixerShapeFiller;
-import io.github.firetamer.dbb.modules.strong_block.containers.PaintMixerContainer;
-import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler.PaintMixerShapeFiller;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.containers.PaintMixerContainer;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.tiles.PaintMixerTile;
 import io.github.firetamer.dbb.modules.strong_block.util.CustomBlockstateProperties;
-import io.github.firetamer.dbb.modules.strong_block.util.PaintMixerAnimationEnum;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.util.PaintMixerAnimationEnum;
 import net.minecraft.block.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -24,8 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -33,7 +32,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 
 public class PaintMixer extends HorizontalBlock {
-    public static final EnumProperty<PaintMixerAnimationEnum> ANIMATION_ENUM = CustomBlockstateProperties.PAINT_MIXER_ANIMATION_STATE;
+    public static final EnumProperty<PaintMixerAnimationEnum> ANIMATION_ENUM = PaintMixerBlockStateProperties.PAINT_MIXER_ANIMATION_STATE;
 
     public PaintMixer() {
         super(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK).noOcclusion());
@@ -68,7 +67,21 @@ public class PaintMixer extends HorizontalBlock {
         return ActionResultType.SUCCESS;
     }
 
-    private INamedContainerProvider createContainerProvider(World pLevel, BlockPos pPos) {
+    public static void openContainerGUI(World level, BlockPos pos, PlayerEntity player) {
+        if(!level.isClientSide()) {
+            TileEntity tile = level.getBlockEntity(pos);
+
+            if(tile instanceof PaintMixerTile) {
+                INamedContainerProvider containerProvider = createContainerProvider(level, pos);
+
+                NetworkHooks.openGui(((ServerPlayerEntity)player), containerProvider, tile.getBlockPos());
+            } else {
+                throw new IllegalStateException("The Container Provider is Missing");
+            }
+        }
+    }
+
+    private static INamedContainerProvider createContainerProvider(World pLevel, BlockPos pPos) {
         return new INamedContainerProvider() {
             @Override
             public ITextComponent getDisplayName() {
@@ -100,7 +113,7 @@ public class PaintMixer extends HorizontalBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return StrongBlockModule.PAINT_MIXER_TILE.create();
+        return MachinesModule.PAINT_MIXER_TILE.create();
     }
 
     @Override
@@ -205,7 +218,7 @@ public class PaintMixer extends HorizontalBlock {
     }
 
     public static void addFillerBlocks(World pLevel, BlockPos pos, int modelShapeIndex, Direction rotation) {
-        pLevel.setBlockAndUpdate(pos, StrongBlockModule.PAINT_MIXER_SHAPE_FILLER.defaultBlockState()
+        pLevel.setBlockAndUpdate(pos, MachinesModule.PAINT_MIXER_SHAPE_FILLER.defaultBlockState()
                 .setValue(PaintMixerShapeFiller.SHAPE_SELECTION, modelShapeIndex).setValue(FACING, rotation));
     }
 

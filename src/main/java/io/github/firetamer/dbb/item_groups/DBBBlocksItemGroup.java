@@ -1,5 +1,6 @@
 package io.github.firetamer.dbb.item_groups;
 
+import io.github.firetamer.dbb.modules.machines.MachinesModule;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -41,7 +42,8 @@ public class DBBBlocksItemGroup extends ItemGroup {
         items.add(NamekModule.TILLED_NAMEK_DIRT.asItem().getDefaultInstance());
 
         items.add(StrongBlockModule.WARENAI_STRONG_BLOCK.asItem().getDefaultInstance());
-        items.add(StrongBlockModule.PAINT_MIXER_BLOCK.asItem().getDefaultInstance());
-        items.add(StrongBlockModule.PAINT_MIXER_SHAPE_FILLER.asItem().getDefaultInstance());
+
+        items.add(MachinesModule.PAINT_MIXER_BLOCK.asItem().getDefaultInstance());
+        items.add(MachinesModule.PAINT_MIXER_SHAPE_FILLER.asItem().getDefaultInstance());
     }
 }

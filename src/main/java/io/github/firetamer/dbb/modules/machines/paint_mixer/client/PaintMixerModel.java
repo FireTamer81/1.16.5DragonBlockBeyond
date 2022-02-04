@@ -1,8 +1,7 @@
-package io.github.firetamer.dbb.modules.strong_block.client;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.client;
 
 import io.github.firetamer.dbb.DragonBlockBeyond;
-import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
-import io.github.firetamer.dbb.modules.time_chamber.tiles.TimeChamberDoorTile;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.tiles.PaintMixerTile;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

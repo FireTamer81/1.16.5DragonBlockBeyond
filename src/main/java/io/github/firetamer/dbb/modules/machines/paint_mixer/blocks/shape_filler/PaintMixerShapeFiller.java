@@ -1,11 +1,15 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler;
 
+import io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.PaintMixer;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.tiles.PaintMixerTile;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -18,6 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.stream.Stream;
 
@@ -112,15 +117,112 @@ public class PaintMixerShapeFiller extends HorizontalBlock {
 
     @Override
     public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
-        if (pState.getValue(SHAPE_SELECTION).equals(11)) {
+        if (pState.getValue(SHAPE_SELECTION).equals(1)) {
             switch (pState.getValue(FACING)) {
                 default:
                     return ActionResultType.FAIL;
                 case NORTH:
-                    Minecraft.getInstance().player.displayClientMessage(new StringTextComponent("Hello"), true);
+                    TileEntity tile = pLevel.getBlockEntity(pPos.south());
+                    if(!pLevel.isClientSide()) {
+                        if(tile instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case EAST:
+                    TileEntity tile2 = pLevel.getBlockEntity(pPos.west());
+                    if(!pLevel.isClientSide()) {
+                        if(tile2 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile2).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case SOUTH:
+                    TileEntity tile3 = pLevel.getBlockEntity(pPos.north());
+                    if(!pLevel.isClientSide()) {
+                        if(tile3 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile3).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case WEST:
+                    TileEntity tile4 = pLevel.getBlockEntity(pPos.east());
+                    if(!pLevel.isClientSide()) {
+                        if(tile4 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile4).addPaintCanToSlot0();
+                        }
+                    }
+
                     return ActionResultType.SUCCESS;
             }
-        } else {
+        }
+
+        else if (pState.getValue(SHAPE_SELECTION).equals(11)) {
+            switch (pState.getValue(FACING)) {
+                default:
+                    return ActionResultType.FAIL;
+                case NORTH:
+                    PaintMixer.openContainerGUI(pLevel, pPos.below().east(), pPlayer);
+                    return ActionResultType.SUCCESS;
+                case EAST:
+                    PaintMixer.openContainerGUI(pLevel, pPos.below().south(), pPlayer);
+                    return ActionResultType.SUCCESS;
+                case SOUTH:
+                    PaintMixer.openContainerGUI(pLevel, pPos.below().west(), pPlayer);
+                    return ActionResultType.SUCCESS;
+                case WEST:
+                    PaintMixer.openContainerGUI(pLevel, pPos.below().north(), pPlayer);
+                    return ActionResultType.SUCCESS;
+            }
+        }
+
+        else if (pState.getValue(SHAPE_SELECTION).equals(15)) {
+            switch (pState.getValue(FACING)) {
+                default:
+                    return ActionResultType.FAIL;
+                case NORTH:
+                    TileEntity tile = pLevel.getBlockEntity(pPos.below().south());
+                    if(!pLevel.isClientSide()) {
+                        if(tile instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case EAST:
+                    TileEntity tile2 = pLevel.getBlockEntity(pPos.below().west());
+                    if(!pLevel.isClientSide()) {
+                        if(tile2 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile2).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case SOUTH:
+                    TileEntity tile3 = pLevel.getBlockEntity(pPos.below().north());
+                    if(!pLevel.isClientSide()) {
+                        if(tile3 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile3).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+                case WEST:
+                    TileEntity tile4 = pLevel.getBlockEntity(pPos.below().east());
+                    if(!pLevel.isClientSide()) {
+                        if(tile4 instanceof PaintMixerTile) {
+                            ((PaintMixerTile)tile4).addPaintCanToSlot0();
+                        }
+                    }
+
+                    return ActionResultType.SUCCESS;
+            }
+        }
+
+        else {
             return ActionResultType.PASS;
         }
     }

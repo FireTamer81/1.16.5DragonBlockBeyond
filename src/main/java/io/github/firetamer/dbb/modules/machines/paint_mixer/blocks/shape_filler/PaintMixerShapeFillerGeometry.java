@@ -1,7 +1,6 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler;
 
 import com.mojang.datafixers.util.Pair;
-import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockGeometry;
 import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockModel;
 import net.minecraft.client.renderer.model.*;
 import net.minecraft.client.renderer.texture.AtlasTexture;

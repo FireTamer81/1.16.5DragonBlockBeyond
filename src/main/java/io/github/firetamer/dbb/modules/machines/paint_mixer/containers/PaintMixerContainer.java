@@ -1,15 +1,13 @@
-package io.github.firetamer.dbb.modules.strong_block.containers;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.containers;
 
+import io.github.firetamer.dbb.modules.machines.MachinesModule;
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.BlastFurnaceContainer;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,8 +15,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import javax.annotation.Nullable;
 
 public class PaintMixerContainer extends Container {
     private final TileEntity tileEntity;
@@ -30,7 +26,7 @@ public class PaintMixerContainer extends Container {
 
 
     public PaintMixerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(StrongBlockModule.PAINT_MIXER_CONTAINER, windowId);
+        super(MachinesModule.PAINT_MIXER_CONTAINER, windowId);
         this.tileEntity = world.getBlockEntity(pos);
         playerEntity = player;
         this.playerInventory = new InvWrapper(playerInv);
@@ -41,17 +37,15 @@ public class PaintMixerContainer extends Container {
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 addSlot(new SlotItemHandler(h, 0, 181, 42));
-                //addSlot(new SlotItemHandler(h, 0, 80, 53));
+                addSlot(new SlotItemHandler(h, 0, 200, 42));
             });
         }
     }
 
     @Override
     public boolean stillValid(PlayerEntity pPlayer) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), pPlayer, StrongBlockModule.PAINT_MIXER_BLOCK);
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), pPlayer, MachinesModule.PAINT_MIXER_BLOCK);
     }
-
-
 
 
 

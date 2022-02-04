@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.strong_block.util;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.util;
 
 import net.minecraft.util.IStringSerializable;
 

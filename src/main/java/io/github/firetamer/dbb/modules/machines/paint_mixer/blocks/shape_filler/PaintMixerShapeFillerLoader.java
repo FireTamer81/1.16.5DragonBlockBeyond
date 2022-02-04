@@ -1,8 +1,7 @@
-package io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.shape_filler;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockGeometry;
 import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.client.model.IModelLoader;
 

@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.strong_block.client;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.client;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import io.github.firetamer.dbb.DragonBlockBeyond;
@@ -24,6 +24,8 @@ public class PaintMixerFunctionalGUI extends Screen {
     private ToggleWidget capsulizeButton;
     private boolean isCapsulizeButtonActive = false;
 
+    ITextComponent[] terminalMessages = new ITextComponent[10];
+
     protected Minecraft mc;
 
     protected PaintMixerFunctionalGUI() {
@@ -38,7 +40,21 @@ public class PaintMixerFunctionalGUI extends Screen {
         this.topLeftX = (this.width / 2) - 128;
         this.topLeftY = (this.height / 2) - 93;
 
+        this.initTerminalMessages();
         this.initButtons();
+    }
+
+    public void initTerminalMessages() {
+        terminalMessages[0] = new StringTextComponent("");
+        terminalMessages[1] = new StringTextComponent("");
+        terminalMessages[2] = new StringTextComponent("");
+        terminalMessages[3] = new StringTextComponent("");
+        terminalMessages[4] = new StringTextComponent("");
+        terminalMessages[5] = new StringTextComponent("");
+        terminalMessages[6] = new StringTextComponent("");
+        terminalMessages[7] = new StringTextComponent("");
+        terminalMessages[8] = new StringTextComponent("");
+        terminalMessages[9] = new StringTextComponent("Paint Mixer - Active");
     }
 
     public void initButtons() {
@@ -50,6 +66,19 @@ public class PaintMixerFunctionalGUI extends Screen {
         this.capsulizeButton.initTextureValues(0, 220, 60, 18, TEXTURE);
     }
 
+    public void addNewTerminalMessage(ITextComponent newMessage) {
+        terminalMessages[0] = terminalMessages[1];
+        terminalMessages[1] = terminalMessages[2];
+        terminalMessages[2] = terminalMessages[3];
+        terminalMessages[3] = terminalMessages[4];
+        terminalMessages[4] = terminalMessages[5];
+        terminalMessages[5] = terminalMessages[6];
+        terminalMessages[6] = terminalMessages[7];
+        terminalMessages[7] = terminalMessages[8];
+        terminalMessages[8] = terminalMessages[9];
+        terminalMessages[9] = newMessage;
+    }
+
     @Override
     public boolean mouseClicked(double xDouble, double yDouble, int button) {
         super.mouseClicked(xDouble, yDouble, button);
@@ -58,9 +87,11 @@ public class PaintMixerFunctionalGUI extends Screen {
             if (this.mixActionButton.isStateTriggered()) {
                 this.mixActionButton.setStateTriggered(false);
                 isMixActionButtonActive = false;
+                this.addNewTerminalMessage(new StringTextComponent("no more mixing"));
             } else {
                 this.mixActionButton.setStateTriggered(true);
                 isMixActionButtonActive = true;
+                this.addNewTerminalMessage(new StringTextComponent("MIXING"));
             }
 
             return true;
@@ -69,9 +100,11 @@ public class PaintMixerFunctionalGUI extends Screen {
             if (this.pickColorButton.isStateTriggered()) {
                 this.pickColorButton.setStateTriggered(false);
                 isPickColorButtonActive = false;
+                this.addNewTerminalMessage(new StringTextComponent("no more color"));
             } else {
                 this.pickColorButton.setStateTriggered(true);
                 isPickColorButtonActive = true;
+                this.addNewTerminalMessage(new StringTextComponent("MORE COLOR!!"));
             }
 
             return true;
@@ -80,9 +113,11 @@ public class PaintMixerFunctionalGUI extends Screen {
             if (this.capsulizeButton.isStateTriggered()) {
                 this.capsulizeButton.setStateTriggered(false);
                 isCapsulizeButtonActive = false;
+                this.addNewTerminalMessage(new StringTextComponent("no more capsulizing?"));
             } else {
                 this.capsulizeButton.setStateTriggered(true);
                 isCapsulizeButtonActive = true;
+                this.addNewTerminalMessage(new StringTextComponent("CAPSULIZE"));
             }
 
             return true;
@@ -103,7 +138,7 @@ public class PaintMixerFunctionalGUI extends Screen {
     }
 
     public void renderTerminalStrings(MatrixStack stack) {
-        ITextComponent line1Text = new StringTextComponent("Paint Can Loaded");
+        //ITextComponent line1Text = new StringTextComponent("Paint Can Loaded");
         int lineTopLeftPosX = topLeftX + 12;
         int lineTopLeftPosY = topLeftY + 13;
         int line2TopLeftPosY = topLeftY + 21;
@@ -117,15 +152,15 @@ public class PaintMixerFunctionalGUI extends Screen {
         int line10TopLeftPosY = topLeftY + 85;
         FontRenderer fontRenderer = this.mc.font;
 
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, lineTopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line2TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line3TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line4TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line5TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line6TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line7TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line8TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line9TopLeftPosY, 0xFFFFFF);
-        drawString(stack, fontRenderer, line1Text, lineTopLeftPosX, line10TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[0], lineTopLeftPosX, lineTopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[1], lineTopLeftPosX, line2TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[2], lineTopLeftPosX, line3TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[3], lineTopLeftPosX, line4TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[4], lineTopLeftPosX, line5TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[5], lineTopLeftPosX, line6TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[6], lineTopLeftPosX, line7TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[7], lineTopLeftPosX, line8TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[8], lineTopLeftPosX, line9TopLeftPosY, 0xFFFFFF);
+        drawString(stack, fontRenderer, terminalMessages[9], lineTopLeftPosX, line10TopLeftPosY, 0xFFFFFF);
     }
 }

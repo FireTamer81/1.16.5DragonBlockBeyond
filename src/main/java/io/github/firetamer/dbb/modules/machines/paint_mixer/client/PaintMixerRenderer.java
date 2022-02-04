@@ -1,14 +1,12 @@
-package io.github.firetamer.dbb.modules.strong_block.client;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.client;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import io.github.firetamer.dbb.modules.strong_block.tiles.PaintMixerTile;
-import io.github.firetamer.dbb.modules.time_chamber.tiles.TimeChamberDoorTile;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.tiles.PaintMixerTile;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 import javax.annotation.Nullable;

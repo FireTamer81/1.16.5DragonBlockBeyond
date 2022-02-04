@@ -1,8 +1,9 @@
-package io.github.firetamer.dbb.modules.strong_block.tiles;
+package io.github.firetamer.dbb.modules.machines.paint_mixer.tiles;
 
+import io.github.firetamer.dbb.modules.machines.MachinesModule;
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
-import io.github.firetamer.dbb.modules.strong_block.blocks.paint_mixer.PaintMixer;
-import io.github.firetamer.dbb.modules.strong_block.util.PaintMixerAnimationEnum;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.PaintMixer;
+import io.github.firetamer.dbb.modules.machines.paint_mixer.util.PaintMixerAnimationEnum;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -25,29 +26,47 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.swing.*;
 
-public class PaintMixerTile extends TileEntity implements IAnimatable {
+public class PaintMixerTile extends TileEntity implements IAnimatable{
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
+    public boolean isMixing = false;
 
     public PaintMixerTile() {
-        super(StrongBlockModule.PAINT_MIXER_TILE);
+        super(MachinesModule.PAINT_MIXER_TILE);
     }
-
-
 
     public void mixNewPaintCan() {
         boolean isPaintCanInSlot = this.itemHandler.getStackInSlot(0).getCount() > 0
                 && this.itemHandler.getStackInSlot(0).getItem() == Items.DIRT;
 
         if(isPaintCanInSlot) {
-            this.itemHandler.getStackInSlot(0).shrink(1);
-            this.itemHandler.insertItem(0, new ItemStack(Items.FEATHER), false);
+            //this.itemHandler.getStackInSlot(0).shrink(1);
+            this.isMixing = true;
+
+            Timer timer1 = new Timer(6000, actionEvent -> this.replaceItem());
+            timer1.setRepeats(false);
+            timer1.start();
+
+            //this.itemHandler.insertItem(0, new ItemStack(Items.FEATHER), false);
         }
     }
 
+    //Used in the ShapeFiller BLock use method for the front two blocks (meant to simulate the ability to insert items directly into the machine)
+    public void addPaintCanToSlot0() {
+        this.itemHandler.insertItem(0, new ItemStack(Items.DIRT), false);
+        this.isMixing = false;
+    }
+
+    public void replaceItem() {
+        this.itemHandler.getStackInSlot(0).shrink(1);
+        this.itemHandler.insertItem(0, new ItemStack(Items.FEATHER), false);
+        this.isMixing = false;
+    }
+
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(1) { //Controls the amount of slots
+        return new ItemStackHandler(2) { //Controls the amount of slots
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -62,8 +81,14 @@ public class PaintMixerTile extends TileEntity implements IAnimatable {
 
             @Override
             protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-                //I could do the same switch method thing here to have each individual slot have a different max
-                return 1;
+                switch (slot) {
+                    default:
+                        return 64;
+                    case 0:
+                        return 1;
+                    case 1:
+                        return 64;
+                }
             }
 
             @Nonnull
