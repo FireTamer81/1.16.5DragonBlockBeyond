@@ -28,10 +28,16 @@ public class PlayerGuiModule extends ModuleHelper implements IModule {
     @Override
     public void onClientSetup(FMLClientSetupEvent event) {
         registerKeyBinds(event);
+
+        //This here adds textures to the player HUD.
+        //From here it's just getting some sort of statistic like health and rendering a ar or something through this.
+        //Also, thanks Maty
+        /**
         OverlayRegistry.registerOverlayBottom("hi", (gui, matrixStack, partialTicks, width, height) -> {
             Minecraft.getInstance().getTextureManager().bind(PlayerScreen.GEAR_LOCATION);
             gui.blit(matrixStack, 0, 0, 0, 0, 97, 95);
         });
+        **/
     }
 
     public final static BaseKeyBinding PLAYER_GUI_KEY = create("example_key", KeyEvent.VK_Z, mc -> mc.setScreen(new PlayerScreen()), false);

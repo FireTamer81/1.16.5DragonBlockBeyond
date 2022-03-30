@@ -1,5 +1,6 @@
 package io.github.firetamer.dbb.item_groups;
 
+import io.github.firetamer.dbb.modules.player_model.PlayerModelModule;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -30,5 +31,8 @@ public class DBBItemGroup extends ItemGroup {
         items.add(StrongBlockModule.DAMAGE_ITEM.getDefaultInstance());
         items.add(StrongBlockModule.POLISHER_ITEM.getDefaultInstance());
         items.add(StrongBlockModule.WEDGE_ITEM.getDefaultInstance());
+        items.add(StrongBlockModule.PAINT_BRUSH_ITEM.getDefaultInstance());
+
+        //items.add(PlayerModelModule.TEST_PLAYER_SPAWN_EGG.getDefaultInstance());
     }
 }

@@ -130,7 +130,6 @@ public class StrongBlockTile extends TileEntity implements ITickableTileEntity
 
 
 
-
     /**
      * Overrides
      */

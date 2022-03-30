@@ -41,13 +41,12 @@ public class WarenaiBlock extends Block implements ITOPInfoProvider {
     public static final BooleanProperty ACTIVE_TILE_ENTITY = CustomBlockstateProperties.ACTIVE_TILE_ENTITY;
     public static final EnumProperty<ColorsEnum> BLOCK_COLOR = CustomBlockstateProperties.BLOCK_COLOR;
 
-
     public WarenaiBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(BLOCK_CONDITION, WarenaiBlockCondition.NORMAL)
                 .setValue(BLOCK_PATTERN, BlockPatternEnum.SMOOTH)
-                .setValue(ACTIVE_TILE_ENTITY, false)
+                .setValue(ACTIVE_TILE_ENTITY, true)
                 .setValue(BLOCK_COLOR, ColorsEnum.WHITE));
     }
 
@@ -60,10 +59,9 @@ public class WarenaiBlock extends Block implements ITOPInfoProvider {
         return state.getValue(ACTIVE_TILE_ENTITY);
     }
 
+    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return StrongBlockModule.STRONG_BLOCK_TILE.create();
-    }
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) { return StrongBlockModule.STRONG_BLOCK_TILE.create(); }
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -80,24 +78,33 @@ public class WarenaiBlock extends Block implements ITOPInfoProvider {
         }
     }
 
+    @Override
+    public ITOPDriver getTheOneProbeDriver() {
+        return WarenaiTOPDriver.DRIVER;
+    }
+
+
 
     /******************************************************************************************************************/
     //Testing
     /******************************************************************************************************************/
 
+    /**
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
 
         //world.setBlockAndUpdate(pos, state.cycle(BLOCK_CONDITION));
         //world.setBlockAndUpdate(pos, state.cycle(BLOCK_PATTERN));
-        //world.setBlockAndUpdate(pos, state.cycle(ACTIVE_TILE_ENTITY));
+
+        if (player.isCrouching()) {
+            world.setBlockAndUpdate(pos, state.cycle(ACTIVE_TILE_ENTITY));
+        }
+
         //world.setBlockAndUpdate(pos, state.cycle(BLOCK_COLOR));
 
         return ActionResultType.SUCCESS;
     }
+    **/
 
-    @Override
-    public ITOPDriver getTheOneProbeDriver() {
-        return WarenaiTOPDriver.DRIVER;
-    }
+
 }

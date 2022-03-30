@@ -4,14 +4,20 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import io.github.firetamer.dbb.modules.strong_block.tiles.StrongBlockTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockDisplayReader;
 
 import io.github.firetamer.dbb.modules.strong_block.StrongBlockModule;
 import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
+import net.minecraft.world.World;
 
 public class BlockColors implements IBlockColor {
 
@@ -28,8 +34,6 @@ public class BlockColors implements IBlockColor {
         System.out.println("Registering block color handler");
         Minecraft.getInstance().getBlockColors().register(INSTANCE, StrongBlockModule.WARENAI_STRONG_BLOCK);
     }
-
-
 
     private int determineColorApplied(BlockState state) {
         switch(state.getValue(WarenaiBlock.BLOCK_COLOR)) {

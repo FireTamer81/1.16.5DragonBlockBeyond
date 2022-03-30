@@ -7,6 +7,7 @@ import com.matyrobbrt.lib.module.ModuleHelper;
 import com.matyrobbrt.lib.registry.annotation.*;
 
 import io.github.firetamer.dbb.modules.machines.paint_mixer.blocks.shape_filler.PaintMixerShapeFillerLoader;
+import io.github.firetamer.dbb.modules.strong_block.items.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -21,10 +22,6 @@ import io.github.firetamer.dbb.modules.strong_block.tiles.StrongBlockTile;
 import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlock;
 import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockLoader;
 import io.github.firetamer.dbb.modules.strong_block.blocks.full_block.WarenaiBlockModel;
-import io.github.firetamer.dbb.modules.strong_block.items.DamageItem;
-import io.github.firetamer.dbb.modules.strong_block.items.PolisherItem;
-import io.github.firetamer.dbb.modules.strong_block.items.RepairItem;
-import io.github.firetamer.dbb.modules.strong_block.items.WedgeItem;
 import io.github.firetamer.dbb.modules.strong_block.util.BlockColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -63,7 +60,8 @@ public class StrongBlockModule extends ModuleHelper implements IModule {
     @RegisterItem("wedge_item")
     public static final Item WEDGE_ITEM = new WedgeItem(new Item.Properties().durability(2000));
 
-
+    @RegisterItem("paint_brush_item")
+    public static final Item PAINT_BRUSH_ITEM = new PaintBrush(new Item.Properties().durability(2000));
 
 
 
