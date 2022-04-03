@@ -1,8 +1,0 @@
-This is for everything player model.
-
-Currently I have very little idea how this will be done code wise, but there are plenty of ideas for actual models/races/and race based features.
-
-I probably won't be using geckolib for the player models since it might put far to many restrictions on proposed features like customizable hair, faces, and such.
-So, a custom render might need to be done, which will be one of the most complicated things about this mod, up there with story zones.
-
-

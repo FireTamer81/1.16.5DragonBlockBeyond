@@ -3,7 +3,6 @@ package io.github.firetamer.dbb;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import io.github.firetamer.dbb.modules.player_model.PlayerModelModule;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +48,6 @@ public class DragonBlockBeyond extends ModSetup {
         GeckoLib.initialize();
 
         modBus.addGenericListener(PlayerSkill.class, DragonBlockBeyond::registerSkillTypes);
-        modBus.addListener(this::doClientStuff);
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
         ANNOTATION_PROCESSOR.setAutoBlockItemTab(block -> BLOCKS_GROUP);
@@ -57,11 +55,6 @@ public class DragonBlockBeyond extends ModSetup {
         ApiExtensions.registerAnnotationExtensions();
 
         new PlayerSkillEvents().register(forgeBus, modBus);
-    }
-
-    //This is used separately for now, just until I figure out Maty's stuff
-    private void doClientStuff(final FMLClientSetupEvent event) {
-
     }
 
     @Override
