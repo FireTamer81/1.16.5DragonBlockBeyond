@@ -45,7 +45,7 @@ public class PaintBrush extends Item
                 StrongBlockTile strongBlockTile = (StrongBlockTile) te;
 
                 if (playerEntity.isCrouching()) {
-                    playerEntity.displayClientMessage(new StringTextComponent("Block Color: " + ((StrongBlockTile) te).getColor()), false);
+                    playerEntity.displayClientMessage(new StringTextComponent("Block DBBColor: " + ((StrongBlockTile) te).getColor()), false);
                 } else {
                     playerEntity.displayClientMessage(new StringTextComponent("Hello, Paintbrush Activated"), true);
                     strongBlockTile.setBlockColor(0x444cb4);

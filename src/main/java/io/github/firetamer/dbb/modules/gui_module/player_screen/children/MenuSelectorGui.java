@@ -1,4 +1,4 @@
-package io.github.firetamer.dbb.modules.player_gui_module.player_screen.children;
+package io.github.firetamer.dbb.modules.gui_module.player_screen.children;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -19,21 +19,29 @@ public class MenuSelectorGui extends AbstractGui implements IRenderable, IGuiEve
     private int height;
     private int topLeftX;
     private int topLeftY;
+    protected Minecraft mc;
 
     private ToggleWidget playerInventoryButton;
     private boolean isPlayerInventoryButtonActive = false;
+
     private ToggleWidget playerStatsButton;
     private boolean isPlayerStatsButtonActive = false;
+
     private ToggleWidget playerSkillsButton;
     private boolean isPlayerSkillsButtonActive = false;
+
     private ToggleWidget playerTrainingButton;
     private boolean isPlayerTrainingButtonActive = false;
+
     private ToggleWidget playerStoryButton;
     private boolean isPlayerStoryButtonActive = false;
+
     private ToggleWidget playerTravelButton;
     private boolean isPlayerTravelButtonActive = false;
 
-    protected Minecraft mc;
+
+
+
 
     public MenuSelectorGui() {}
 

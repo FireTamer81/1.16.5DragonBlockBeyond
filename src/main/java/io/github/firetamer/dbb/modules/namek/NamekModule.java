@@ -215,7 +215,7 @@ public class NamekModule extends ModuleHelper implements IModule {
 				|| fluidstate.getType() == NamekModule.NAMEK_FLUID_SOURCE.get()) {
 			event.setBlue(0.09F);
 			event.setGreen(0.45F); // As it stands, what I have done is match the ratios shown in the fluid color
-									// to the fog color. 255 for the fluid color being 1.0F for the Fog Color.
+									// to the fog color. 255 for the fluid color being 1.0F for the Fog DBBColor.
 			event.setRed(0);
 		}
 	}
