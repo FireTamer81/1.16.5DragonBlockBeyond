@@ -1,6 +1,5 @@
 package io.github.firetamer.dbb.item_groups;
 
-import io.github.firetamer.dbb.modules.player_model.PlayerModelModule;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
